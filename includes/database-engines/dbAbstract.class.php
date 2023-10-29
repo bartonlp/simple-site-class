@@ -1,7 +1,7 @@
 <?php
 /* MAINTAINED and WELL TESTED */
 
-define("ABSTRACT_CLASS_VERSION", "3.0.1ab"); // BLP 2023-03-07 - remove $arg use $dbinfo. Pass $dbinfo items to dbMysqli
+define("ABSTRACT_CLASS_VERSION", "1.0.0ab"); // BLP 2023-03-07 - remove $arg use $dbinfo. Pass $dbinfo items to dbMysqli
 
 // Abstract database class
 // Most of this class is implemented here. This keeps us from having to duplicate this over and

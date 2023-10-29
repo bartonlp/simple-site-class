@@ -109,10 +109,14 @@ if(!class_exists("getinfo")) {
       error_reporting($old);
     }
 
+    // getVersion
+    
     public static function getVersion() {
       return SITELOAD_VERSION;
     }
 
+    // Private findsitemap
+    
     private function findsitemap() {
       $mydir = $this->mydir;
 
@@ -125,12 +129,14 @@ if(!class_exists("getinfo")) {
         // root. We should actually never reach the root.
 
         if($this->docroot == $mydir || '/' == $mydir) {
-          echo <<<EOF
+/*          echo <<<EOF
 <h1>NO 'mysitemap.json' Found</h1>
 <p>To run {$_SERVER['PHP_SELF']} you must have a 'mysitemap.json' somewhere within the Document Root.</p>
 EOF;
           error_log("ERROR: siteload.php. No 'mysitemap.json' found in " . getcwd() . " for file {$_SERVER['PHP_SELF']}. DocRoot: $docroot");
           exit();
+*/
+          return "NO_MYSITEMAP"; // BLP 2023-10-29 - We could not find a mysitemap.json
         }
 
         // We are not at the root so do $mydir = dirname($mydir). For example if $mydir is
@@ -143,6 +149,7 @@ EOF;
       }
     }
 
+    // Public getSite
     // This is the getter for the private $this->_site;
 
     public function getSite() {
@@ -170,5 +177,7 @@ EOF;
   }
   exit();
 }
+
+if($_site == "NO_MYSITEMAP") $_site = null;
 
 return $_site;
