@@ -26,7 +26,7 @@ define("SITE_CLASS_VERSION", "3.8.0"); // BLP 2023-08-08 - updated. New tracker.
 
 use \bartonlp\siteload\getinfo as load;
 
-class SiteClass extends Database {
+class SimpleSiteClass extends Database {
   // Give these default values incase they are not mentioned in mysitemap.json.
   // Note they could still be null from mysitemap.json!
 
