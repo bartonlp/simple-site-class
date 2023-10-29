@@ -329,13 +329,6 @@ EOF;
     $b->inlineScript = $this->b_inlineScript ? "<script>\n$this->b_inlineScript\n</script>" : null;
     $b->script = $this->b_script;
 
-    // counterWigget is available to the footerFile to use if wanted.
-    // BLP 2022-01-02 -- if count is set then use the counter
-    
-    if($this->noCounter !== true) {
-      $counterWigget = $this->getCounterWigget($this->ctrmsg); // ctrmsg may be null which is OK
-    }
-
     // BLP 2021-10-24 -- lastmod is also available to footerFile to use if wanted.
 
     if($this->noLastmod !== true) {
@@ -361,7 +354,6 @@ EOF;
 <!-- Default Footer -->
 <footer>
 $b->aboutwebsite
-$counterWigget
 $lastmod
 $b->script
 $b->inlineScript
@@ -380,33 +372,5 @@ EOF;
 
   public function __toString() {
     return __CLASS__;
-  }
-
-  /**
-   * getCounterWigget()
-   */
-
-  public function getCounterWigget(?string $msg="Page Hits"):?string {
-    // Counter at bottom of page
-    // hitCount is updated by 'counter()'
-
-    $hits = number_format($this->hitCount);
-
-    // Let the redered appearance be up to the pages css!
-    // #F5DEB3==rgb(245,222,179) is 'wheat' for the background
-    // rgb(123, 16, 66) is a burgundy for the number
-    // We place the counter in the center of the page in a div, in a table
-    return <<<EOF
-<div id="hitCounter">
-$msg
-<table id="hitCountertbl">
-<tr id='hitCountertr'>
-<th id='hitCounterth'>
-$hits
-</th>
-</tr>
-</table>
-</div>
-EOF;
   }
 } // End of Class
