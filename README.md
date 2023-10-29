@@ -1,4 +1,4 @@
-# SiteClass Verion 3.8.0
+# SimpleSiteClass Verion 1.0.0
 
 **SimpleSiteClass** is a PHP mini framework for simple, small websites. It can be esaly combined with other frameworks or templeting engines if needed. 
 For small websites I feel that frameworks like Laravel or Meteor etc. are just too much.
