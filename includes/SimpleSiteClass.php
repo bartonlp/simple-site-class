@@ -30,7 +30,6 @@ class SimpleSiteClass extends Database {
   // Give these default values incase they are not mentioned in mysitemap.json.
   // Note they could still be null from mysitemap.json!
 
-  public $count = true;
   public $doctype = "<!DOCTYPE html>";
 
   /**
