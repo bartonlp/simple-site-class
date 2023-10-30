@@ -50,7 +50,6 @@ return <<<EOF
   $h->defaultCss
   $h->link
   $jQuery
-  $trackerStr
   $h->extra
   $h->script
   $h->inlineScript
@@ -61,7 +60,7 @@ EOF;
 
 All of the *$h* properties are created by _SiteClass_.
 
-These 'xxxFile' files return their contents. 
+These 'xxxFile' files return their contents. You can ignore using *$h* values and just have standard html in the files.
 
 You will see, if you delve into the SiteClass code, that many things can be passed to the getPageTopBottom method,  
 and the various sub-methods, but the standard things are:
@@ -110,6 +109,8 @@ In the 'mysitemap.json' just add the full path to the file. For example:
         "engine": "mysqli"
     },
     "headFile": "includes/head.i.php",
+    "bannerFile": "includes/banner.i.php",
+    "footerFile": "includes/footer.i.php"
 }
 ```
 
@@ -126,7 +127,6 @@ Creating the special files make the tedious boiler plate simple and yet configur
 [dbTables](dbTables.html)
 [SiteClass Methods](siteclass.html)
 [Additional Files](files.html)
-[Analysis and Tracking](analysis.html)
 [Index](index.html)
 
 ## Contact Me
@@ -134,4 +134,4 @@ Creating the special files make the tedious boiler plate simple and yet configur
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
 Copyright &copy; 2023 Barton Phillips  
 Project maintained by [bartonlp](https://github.com/bartonlp)   
-Last Modified Feb. 24, 2023
+Last Modified October 30, 2023

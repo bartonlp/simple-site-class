@@ -17,19 +17,7 @@ class Database extends dbAbstract {
    * $isSiteClass is true if this is from SiteClass.
    */
 
-  protected $hitCount = 0;
-
-  public function __construct(object $s, ?bool $isSiteClass=null) {
-    // If we came from SiteClass $isSiteClass is true.
-    
-    if($isSiteClass !== true) {
-      // If we did not come from SiteClass and $s->noTrack does not have a value,
-      // then set it to true. Just Database should NOT do tracker (usually).
-      
-      $s->noTrack = $s->noTrack ?? true; // If not set to false set it to true.
-      if($s->noTrack === true) $s->count = false; // BLP 2023-08-11 - Force count false if noTrack is true
-    }
-
+  public function __construct(object $s) {
     // Do the parent dbAbstract constructor
     
     parent::__construct($s);
@@ -67,26 +55,6 @@ class Database extends dbAbstract {
   }
 
   /**
-   * isMyIp($ip):bool
-   * Given an IP address check if this is me.
-   */
-
-  public function isMyIp(string $ip):bool {
-    if($this->isMeFalse === true) return false;
-    return (array_intersect([$ip], $this->myIp)[0] === null) ? false : true;
-  }
-  
-  /**
-   * isMe()
-   * Check if this access is from ME
-   * @return true if $this->ip == $this->myIp else false!
-   */
-
-  public function isMe():bool {
-    return $this->isMyIp($this->ip);
-  }
-
-  /**
    * getVersion()
    * @return string version number
    * Because there is no $this in the function we can all it on $S->getVersion or Database::getVersion().
@@ -115,8 +83,6 @@ class Database extends dbAbstract {
    * @return bool
    * Side effects:
    *  it sets $this->isBot
-   *  it sets $this->foundBotAs
-   * These side effects are used by checkIfBot():void see below.
    */
   
   public function isBot(string $agent):bool {
@@ -131,47 +97,6 @@ class Database extends dbAbstract {
       // This is an unexplained ERROR
       throw new SqlExceiption(__CLASS__ . " " . __LINE__ . ": preg_match() returned false", $this);
     }
-
-    if($this->query("select robots from $this->masterdb.bots where ip='$this->ip'")) { // Is it in the bots table?
-      // Yes it is in the bots table.
-
-      $tmp = '';
-
-      // Look at each posible entry in bots. The entries may be for different sites and have
-      // different values for $robots. The BOTAS_... are a string while BOTS_... are integers.
-      
-      while([$robots] = $this->fetchrow('num')) {
-        if($robots & BOTS_ROBOTS) {
-          $tmp .= "," . BOTAS_ROBOT;
-        }
-        if($robots & BOTS_SITEMAP) {
-          $tmp .= "," . BOTAS_SITEMAP;
-        }
-        if($robots & BOTS_CRON_ZERO) {
-          $tmp .= "," . BOTAS_ZERO;
-        }
-        if($tmp != '') break;
-      }
-      
-      if($tmp != '') {
-        $tmp = ltrim($tmp, ','); // remove the leading comma
-        $this->foundBotAs .= "," . $tmp; // BLP 2023-10-23 - foundBotAs could be BOTAS_MATCH
-        $this->isBot = true; 
-      } 
-    }
-
-    /* if(!$this->isMe()) error_log("Database isBot(): ip=$this->ip, foundBotAs=$this->foundBotAs,
-    /* robots=$tmp"); */
-
-    if(str_contains($this->foundBotAs, BOTAS_MATCH)) {
-      return $this->isBot;
-    }
-
-    // The ip was NOT in the bots table either.
-
-    $this->foundBotAs = BOTAS_NOT; // not a bot
-    $this->isBot = false;
-    return $this->isBot;
   }
 
   // ********************************************************************************

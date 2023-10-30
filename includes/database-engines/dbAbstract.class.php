@@ -21,10 +21,10 @@ abstract class dbAbstract {
 
     // If we have $s items use them otherwise get the defaults
 
-    $s->ip = $s->ip ?? $_SERVER['REMOTE_ADDR']; // BLP 2023-01-18 - Added for NODE with php view.
-    $s->agent = $s->agent ?? $_SERVER['HTTP_USER_AGENT']; // BLP 2022-01-28 -- CLI agent is NULL and $__info[1] wil be null
-    $s->self = $s->self ?? htmlentities($_SERVER['PHP_SELF']);
-    $s->requestUri = $s->requestUri ?? $_SERVER['REQUEST_URI'];
+    $s->ip = $_SERVER['REMOTE_ADDR'];
+    $s->agent = $_SERVER['HTTP_USER_AGENT']; 
+    $s->self = htmlentities($_SERVER['PHP_SELF']);
+    $s->requestUri = $_SERVER['REQUEST_URI'];
 
     // Put all of the $s values into $this.
     
@@ -32,7 +32,7 @@ abstract class dbAbstract {
       $this->$k = $v;
     }
     
-    // If no 'dbinfo' (no database) in mysitemap.json set everything so the database is not loaded.
+    // If no 'nodb' or 'dbinfo' (no database) in mysitemap.json set everything so the database is not loaded.
     
     if($this->nodb === true || is_null($this->dbinfo)) {
       $this->nodb = true;    // Maybe $this->dbinfo was null
@@ -41,12 +41,16 @@ abstract class dbAbstract {
     }
 
     $db = null;
+
+    // Currently there is only one database and that is mysqli.
+    
     $dbinfo = $this->dbinfo;
 
     if(isset($dbinfo->engine) === false) {
       $this->errno = -2;
       $this->error = "'engine' not defined";
-      throw new SqlException(__METHOD__, $this);
+      //throw new SqlException(__METHOD__, $this);
+      $dbinfo->engine = "mysqli"; // If no database engine assume it is mysqli
     }
 
     // BLP 2023-01-26 - currently there is only ONE viable engine and that is dbMysqli
@@ -73,10 +77,14 @@ abstract class dbAbstract {
   // Each child class needs to have a __toString() method
 
   abstract public function __toString() ;
-    
+
+  // Get the name of the class.
+  
   public static function getAbstractName() {
     return __CLASS__;
   }
+
+  // Get the version
   
   public static function getVersion() {
     return ABSTRACT_CLASS_VERSION;
@@ -112,6 +120,7 @@ abstract class dbAbstract {
   }
   
   // The following methods either execute or if the method is not defined throw an Exception
+  // These methods are all in dbMysqli.class.php
   
   public function query($query) {
     if(method_exists($this->db, 'query')) {

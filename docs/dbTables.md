@@ -14,21 +14,21 @@ $S = new $_site->className($_site);
 $T = new dbTables($S);
 
 // Pass some info to getPageTopBottom method
-$h->title = "Example"; // Goes in the <title></title>
-$h->banner = "<h1>Example</h1>"; // becomes the <header> section
+$S->title = "Example"; // Goes in the <title></title>
+$S->banner = "<h1>Example</h1>"; // becomes the <header> section
 // Add some local css to but a border and padding on the table 
-$h->css = <<<EOF
+$S->css = <<<EOF
 main table * {
   padding: .5em;
   border: 1px solid black;
 }
 EOF;
 
-[$top, $footer] = $S->getPageTopBottom($h);
+[$top, $footer] = $S->getPageTopBottom();
 
 // create a table from the memberTable
 $sql = "select * from $S->memberTable";
-list($tbl) = $T->maketable($sql);
+[$tbl] = $T->maketable($sql);
 
 echo <<<EOF
 $top
@@ -42,7 +42,10 @@ $footer
 EOF;
 ```
 
-The 'maketable' method takes several optional arguments to help setup the table. Using the options you can give your table an id or class or set any other attributes. You can also pass a 'callback' function which can modify the rows as they are selected (see the 'example-insert-update.php' file in the 'examples' directory for more information).
+The 'maketable' method takes several optional arguments to help setup the table. 
+Using the options you can give your table an id or class or set any other attributes. 
+You can also pass a 'callback' function which can modify the rows as they are selected 
+(see the 'example-insert-update.php' file in the 'examples' directory for more information).
 
 ```bash
   /**
@@ -139,12 +142,11 @@ $extra['footer'] a footer string
 [dbTables](dbTables.html)
 [SiteClass Methods](siteclass.html)
 [Additional Files](files.html)
-[Analysis and Tracking](analysis.html)
 [Index](index.html)
 
 ## Contact Me
 
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
-Copyright &copy; 2022 Barton Phillips  
+Copyright &copy; 2023 Barton Phillips  
 Project maintained by [bartonlp](https://github.com/bartonlp)
-Last Modified Aug 14, 2022
+Last Modified October 30, 2023
