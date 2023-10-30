@@ -138,15 +138,15 @@ $extra['footer'] a footer string
 
 ---
 
-[Examples](examples.html)
-[dbTables](dbTables.html)
-[SiteClass Methods](siteclass.html)
-[Additional Files](files.html)
+[Examples](examples.html)  
+[dbTables](dbTables.html)  
+[SiteClass Methods](siteclass.html)  
+[Additional Files](files.html)  
 [Index](index.html)
 
 ## Contact Me
 
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
 Copyright &copy; 2023 Barton Phillips  
-Project maintained by [bartonlp](https://github.com/bartonlp)
+Project maintained by [bartonlp](https://github.com/bartonlp)  
 Last Modified October 30, 2023

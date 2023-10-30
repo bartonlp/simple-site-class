@@ -123,10 +123,10 @@ Creating the special files make the tedious boiler plate simple and yet configur
 
 ---
 
-[Examples](examples.html)
-[dbTables](dbTables.html)
-[SiteClass Methods](siteclass.html)
-[Additional Files](files.html)
+[Examples](examples.html)  
+[dbTables](dbTables.html)  
+[SiteClass Methods](siteclass.html)  
+[Additional Files](files.html)  
 [Index](index.html)
 
 ## Contact Me

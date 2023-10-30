@@ -1,4 +1,5 @@
-# SimpleSiteClass, Database, dbMysqli and dbAbstract Methods (version 1.0.0simple, 3.0.0database, 3.0.0mysql, 1.0.0ab)
+# SimpleSiteClass, Database, dbMysqli and dbAbstract Methods   
+(version 1.0.0simple, 3.0.0database, 3.0.0mysql, 1.0.0ab)
 
 ---
 

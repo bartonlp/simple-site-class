@@ -18,8 +18,8 @@ code {
 pagetitle="Main Readme file";
 /usr/bin/pandoc -Vpagetitle="$pagetitle" -Vmath="$css" -s -f gfm -t html5 README.md -o README.html
 
-# Create 'git log >~/www/bartonlp.com/gitlog
-git log --all > ~/www/bartonlp.com/gitlog
+# Create 'git log >~/www/gitlog
+git log --all > ~/www/gitlog
 
 # now move into the docs directory and do those html files
 
@@ -31,8 +31,6 @@ pagetitle="SiteClass Methods";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s siteclass.md -o siteclass.html
 pagetitle="Additional Files";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s files.md -o files.html
-pagetitle="Analysis";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s analysis.md -o analysis.html
 pagetitle="examplereadme";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s examplereadme.md -o examplereadme.html
 

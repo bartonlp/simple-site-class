@@ -24,9 +24,6 @@ pagetitle="SiteClass Methods";
 pagetitle="Additional Files";
 echo "files";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s files.md -o files.html
-pagetitle="Analysis";
-echo "analysis";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s analysis.md -o analysis.html
 pagetitle="examplereadme";
 echo "examplereadme";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" -Vmath="$css" -s examplereadme.md -o examplereadme.html
