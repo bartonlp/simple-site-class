@@ -5,11 +5,6 @@ For small websites I feel that frameworks like Laravel or Meteor etc. are just t
 
 See [github.com/bartonlp/simple-site-class](https://github.com/bartonlp/simple-site-class) for a full list of changes.
 
-You can check the versions of the framework: [Get Versions](https://bartonphillips.com/articles/showVersions.php)  
-Or [Get Versions](https://bartonlp.com/otherpages/getVersions.php)
-
-This project has several parts that can function standalone or combined.  
-
 ## SiteClass Documentation 
 
 [SiteClass Documentation](https://bartonlp.github.io/simple-site-class)
