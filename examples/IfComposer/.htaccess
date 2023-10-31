@@ -1,0 +1,12 @@
+# For Examples
+# If you have /var/www/vendor and have copied the examples directory to /var/www/html
+Options +Indexes
+Require all granted
+# NOTE your apache must have mod_env, mod_headers and mod_rewrite
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Expose-Headers: Content-Length
+# Set the environment variable for the siteloader. 
+SetEnv SITELOADNAME /var/www/vendor/bartonlp/simple-site-class/includes/siteload.php
+setEnv SITECLASS_DIR /var/www/vendor/bartonlp/simple-site-class/includes
+
+

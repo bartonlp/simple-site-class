@@ -97,6 +97,7 @@ class Database extends dbAbstract {
       // This is an unexplained ERROR
       throw new SqlExceiption(__CLASS__ . " " . __LINE__ . ": preg_match() returned false", $this);
     }
+    return $this->isBot;
   }
 
   // ********************************************************************************
@@ -129,26 +130,6 @@ class Database extends dbAbstract {
   // ************
   // End Counters
   // ************
-
-  /**
-   * checkIfBot() before we do any of the other protected functions in SiteClass.
-   * *** This is ONLY called by the constructor in dbAbstract!
-   * Calls the public isBot().
-   * Checks if the user-agent looks like a bot or if the ip is in the bots table
-   * or previous tracker records had something other than zero or 0x2000.
-   * Set $this->isBot true/false.
-   * return bool.
-   * SEE defines.php for the values for TRACKER_BOT, BOTS_SITECLASS
-   * $this-isBot() is false if there is no 'match' or no entry in the bots table
-   */
-
-  protected function checkIfBot():bool {
-    if($this->isMe()) { // I am never a bot!
-      return false; 
-    }
-
-    return $this->isBot($this->agent);
-  }
 
   public function __toString() {
     return __CLASS__;

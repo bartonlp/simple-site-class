@@ -72,6 +72,8 @@ abstract class dbAbstract {
     // Escapte the agent in case it has something like an apostraphy in it.
     
     $this->agent = $this->escape($this->agent);
+
+    $this->logagent(); 
   }
 
   // Each child class needs to have a __toString() method

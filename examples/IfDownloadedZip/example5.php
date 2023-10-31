@@ -14,6 +14,8 @@ function callback($class) {
 
 if(spl_autoload_register("callback") === false) exit("Can't Autoload");
 
+ErrorClass::setDevelopment(true);
+
 require(__DIR__ . "/../../includes/database-engines/helper-functions.php");
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
@@ -32,8 +34,7 @@ main table * {
 }
 EOF;
 
-$bot = $S->isBot($S->agent);
-vardump("bot", $bot);
+$bot = ($S->isBot($S->agent)) ? "true" : "false";
 
 [$top, $footer] = $S->getPageTopBottom();
 
@@ -44,10 +45,10 @@ $tbl = $T->maketable($sql)[0];
 echo <<<EOF
 $top
 <main>
-
-<h3>Create a html table from the tracker database table</h3>
+<p>BOTS=$bot</p>
+<h3>Create a html table from the logagent database table</h3>
 <p>$sql</p>
-<p>The tracker table follows:</p>
+<p>The logagent table follows:</p>
 $tbl
 </main>
 <hr>
@@ -56,7 +57,6 @@ $tbl
 <a href="example3.php">Example3</a><br>
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
-<a href="hi.php">Hi</a><br>
-<a href="phpinfo.php">PHPINFO</a>
+<a href="../phpinfo.php">PHPINFO</a>
 $footer
 EOF;
