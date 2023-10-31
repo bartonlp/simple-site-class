@@ -3,17 +3,17 @@
 function callback($class) {
   switch($class) {
     case "SimpleSiteClass":
-      require(__DIR__ . "/../includes/$class.php");
+      require(__DIR__ . "/../../includes/$class.php");
       break;
     default:
-      require(__DIR__ . "/../includes/database-engines/$class.class.php");
+      require(__DIR__ . "/../../includes/database-engines/$class.class.php");
       break;
   }
 }
 
 if(spl_autoload_register("callback") === false) exit("Can't Autoload");
 
-require(__DIR__ . "/../includes/database-engines/helper-functions.php");
+require(__DIR__ . "/../../includes/database-engines/helper-functions.php");
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 

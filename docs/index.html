@@ -43,9 +43,9 @@
       <p>This project has several parts that can function standalone or combined.</p>
       <ul>
         <li>Database.class.php : provides a wrapper for several different database engines.</li>
+        <li>dbMySqli.class.php : has the actual mysqli functions.</li>
         <li>dbTables.class.php : uses the functionality of Database.class.php to make creating tables easy.</li>
-        <li>ErrorClass.class.php : Error and Exception classes</li>
-        <li>SiteClass.class.php : tools for making creating a site a little easier.
+        <li>SimpleSiteClass.class.php : tools for making creating a site a little easier.
           The class provides methods to help with headers, banners, footers and more.</li>
       </ul>
       <p>The following database engine is provided as the following class:</p>
@@ -53,22 +53,29 @@
         <li>dbMysqli.class.php : (rigorously tested) This is the latest PHP version of the MySql database engine.</li>
       </ol>
       <h2 id="disclamer">Disclamer</h2>
-      <p>To start, this framework is meant for Linux not Windows. I don't use Windows, like it or have it, so nothing has been tried on Windows.</p>
-      <p>I use Linux Mint which is an Ubuntu derivative which is a Debian derivative. I have not tried this package on any distributions that do not evolve from Debian.</p>
+      <p>To start, this framework is meant for Linux not Windows. I don't use Windows, like it or
+        have it, so nothing has been tried on Windows. Quite frankly I don't know why anyone would
+        use a Windows server.</p>
+      <p>I use Ubuntu 22.04 Linux which is a Debian derivative. I have not tried this package on any distributions that do not evolve from Debian.</p>
       <h2 id="install">Install</h2>
       <p>There are several ways to install this project.</p>
       <h3 id="download-the-zip-file">Download The ZIP File</h3>
-      <p>Download the ZIP file from GitHub. Expand it and move the 'includes' directory somewhere. On a system with Apache2, I usually put the 'includes' directory in the /var/www directory that Apache creates. Apache also usually creates /var/www/html and makes this the default DocumentRoot. I put the 'includes' directory just outside of the DocumentRoot. In my servers I have /var/www and then have my virtual hosts off that directory. That way the 'includes' directory is easily available to all of my virtual hosts.</p>
-      <p>If you are testing with the PHP server I put a 'www' directory off my $HOME and put the 'includes' directory there. I then make my test DocumentRoot off '~/www' like '~/www/test'. I <code>cd</code> to the test directory and do <code>php -S localhost:8080</code>. I can then use my browser and goto <code>localhost:8080</code> and see my 'index.php' file.</p>
+      <p>Download the ZIP file from GitHub. Expand it into the /var/www dirctory that Apache2
+        creates. 
+        In my servers I have /var/www and then have my virtual hosts off that directory.
+        That way the directory created when you unzip the download is easily available to all of my virtual hosts.</p>
       <h3 id="use-composer">Use Composer</h3>
-      <p>If you have Apache or Nginx installed then you should made your project root somewhere within your DocumentRoot ('/var/www/html' for Apache2 on Ubuntu). Or if you want to make a seperate Apache virtual host with a registered domain name you can make your new project in '/var/www'.</p>
-      <p>Create a directory <code>mkdir myproject; cd myproject</code>, this is your project root directory. Add the following to 'composer.json', just cut and past:</p>
+      <p>If you have Apache or Nginx installed then you should made your project root somewhere
+        within your DocumentRoot ('/var/www/html' for Apache2 on Ubuntu).
+        Or if you want to make a seperate Apache virtual host with a registered domain name you can make your new project in '/var/www'.</p>
+      <p>Create a directory <code>mkdir myproject; cd myproject</code>,
+        this is your project root directory. Add the following to 'composer.json', just cut and past:</p>
       <div class="sourceCode">
       <pre class="sourceCode json">
       <code class="sourceCode json">
 {
     &quot;require&quot;: {
-        &quot;bartonlp/site-class&quot;: &quot;dev-master&quot;
+        &quot;bartonlp/simple-site-class&quot;: &quot;dev-master&quot;
     }
 }
       </code>
@@ -92,7 +99,6 @@
         <li><a href="dbTables.html">dbTables Documentation</a></li>
         <li><a href="siteclass.html">SiteClass and Database Methods</a></li>
         <li><a href="files.html">Additional Files User by SiteClass</a></li>
-        <li><a href="analysis.html">Page Counting, Analysis and Tracking</a></li>
         <li><a href="examplereadme.html">Examples Readme</a></li>
       </ul>
 

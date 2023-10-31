@@ -1,10 +1,4 @@
 <?php
-// All sites that have an "About Web Site" link should have a symlink
-// to /var/www/bartonphillipsnet/bartonlp/aboutwebsite.php and should have a modified mysitemap.json that has
-// these items in the $_site array: 1) 'copyright', 2 'className', 3 'siteName' etc.
-// The className is the name of the class for the site. Most sites just use 'SiteClass' but some
-// will have a seperate xxxClass in their 'includes' directory in which case 'className' should be
-// set to 'includes/xxxClass.php'. 'xxxClass' should be derived from 'SiteClass'.
   
 $_site = require_once(__DIR__ . "/../includes/siteload.php");
 
