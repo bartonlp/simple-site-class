@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>examples</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  
+  <style>
+  div.sourceCode {
+    background-color: #EEF3E2;
+    border-left: 10px solid gray;
+    padding-left: 5px;
+  }
+  code {
+    background-color: #EEF3E2;
+  }
+  </style>
+</head>
+<body>
+<h1 id="examples">Examples</h1>
+<p>First you will need to install mysql if you don't already have it. You will need to install the PHP extension for mysql. The SimpleSiteClass code runs with PHP 8, and it may not work with older versions of PHP.</p>
+<p>Once you have mysql and the PHP extension you can set up mysql. These examples use a database called 'barton' with user 'barton'. There is a file in this directory called schema.sql. You can run it in mysql and create the table.</p>
+<p>I have set up a .htaccess file which has the <em>Header set</em> for the site loader.</p>
+<p>Now that the database is set up you can run the examples.</p>
+<p>I have included a couple of examples to show how to use the SimpleSiteClass. They are in two seperate directories: IfComposer and IfDownloadedZip. If you set up your directory structure as:<br />
+/var/www/<br />
+/var/html<br />
+and used <strong>composer</strong> to create a /var/www/vendor/bartonlp/simple-site-class directory, you should use IfComposer examples.<br />
+If you downloaded the zip file from github.com/bartonlp/simple-site-class you should use the IfDownloadedZip directory.</p>
+<p>In either case, from the <em>examples</em> directory in the downloaded location, do: php -S localhost:3000<br />
+Then open your browser and enter:<br />
+localhost:3000/example1.php</p>
+<p>Each example has links to the rest of the examples.</p>
+<p>Any questions can be directed to <a href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></p>
+<p>Have fun</p>
+<p>Last Modified October 31, 2023</p>
+</body>
+</html>

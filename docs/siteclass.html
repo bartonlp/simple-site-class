@@ -88,15 +88,15 @@
   </style>
 </head>
 <body>
-<h1 id="simplesiteclass-database-dbmysqli-and-dbabstract-methods">SimpleSiteClass, Database, dbMysqli and dbAbstract Methods</h1>
-<p>(version 1.0.0simple, 3.0.0database, 3.0.0mysql, 1.0.0ab)</p>
+<h1 id="simplesiteclass-simpledatabase-simpledbmysqli-and-simpledbabstract-methods">SimpleSiteClass, SimpleDatabase, SimpledbMysqli and SimpledbAbstract Methods</h1>
+<p>(version 1.0.0simple, 1.0.0database, 3.0.0mysql, 1.0.0ab)</p>
 <hr />
-<h2 id="simplesiteclass-database-and-dbabstract">SimpleSiteClass, Database and dbAbstract</h2>
+<h2 id="simplesiteclass-simpledatabase-and-simpledbabstract">SimpleSiteClass, SimpleDatabase and SimpledbAbstract</h2>
 <p>While there are a number of methods for each of the major classes there are really only a small handful you will use on a regular bases.</p>
 <ul>
 <li>SimpleSiteClass constructor -- If you use getPageTopBottom(). This method extends Database;</li>
 <li>SimpleSiteClass::getPageTopBottom() -- Gets the &lt;head&gt; and &lt;footer&gt;.</li>
-<li>Database constructor -- If you only want to do mysql methods.</li>
+<li>SimpleDatabase constructor -- If you only want to do mysql methods.</li>
 </ul>
 <p>I usually have this kind of code at the top of my page:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">$_site</span> = <span class="kw">require_once</span><span class="ot">(</span><span class="fu">getenv</span><span class="ot">(</span><span class="st">&quot;SITELOADNAME&quot;</span><span class="ot">));</span></span>
@@ -116,16 +116,17 @@
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="st">EOF;</span></span></code></pre></div>
 <p>Or like this if you only need to do mysql queries.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode php"><code class="sourceCode php"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">$_site</span> = <span class="kw">require_once</span><span class="ot">(</span><span class="fu">getenv</span><span class="ot">(</span><span class="st">&quot;SITELOADNAME&quot;</span><span class="ot">));</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">$S</span> = <span class="kw">new</span> Database<span class="ot">(</span><span class="kw">$_site</span><span class="ot">);</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">$S</span> = <span class="kw">new</span> SimpleDatabase<span class="ot">(</span><span class="kw">$_site</span><span class="ot">);</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">echo</span> <span class="st">&quot;Start&lt;br&gt;&quot;</span><span class="ot">;</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="kw">$S</span>-&gt;query<span class="ot">(</span><span class="st">&quot;select &#39;barton&#39; as fname, &#39;phillips&#39; as lname&quot;</span><span class="ot">);</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ot">[</span><span class="kw">$fname</span><span class="ot">,</span> <span class="kw">$lname</span><span class="ot">]</span> = <span class="kw">$S</span>-&gt;fetchrow<span class="ot">(</span><span class="st">&#39;num&#39;</span><span class="ot">);</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">echo</span> <span class="st">&quot;My name is </span><span class="kw">$fname</span><span class="st"> </span><span class="kw">$lname</span><span class="st">&lt;br&gt;&quot;</span><span class="ot">;</span></span></code></pre></div>
-<p>There are many more methods in the SimpleSiteClass and Database classes. Also, the dbMysql is well documented in the dbMysqli.Class.php file.</p>
+<p>There are many more methods in the SimpleSiteClass and SimpleDatabase classes. Also, the dbMysqli is well documented in the SimpledbMysqli.Class.php file.</p>
 <hr />
-<p><a href="dbTables.html">dbTables</a><br />
+<p><a href="dbTables.html">SimpledbTables</a><br />
 <a href="siteclass.html">SimpleSiteClass Methods</a><br />
 <a href="files.html">Additional Files</a><br />
+[Examples]{examples.html)<br />
 <a href="index.html">Index</a></p>
 <h2 id="contact-me">Contact Me</h2>
 <p>Barton Phillips : <a href="mailto://bartonphillips@gmail.com"><a href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></a><br />

@@ -1,4 +1,4 @@
-# Additional Files User by SiteClass
+# Additional Files User by SimpleSiteClass
 
 ---
 
@@ -58,11 +58,11 @@ return <<<EOF
 EOF;
 ```
 
-All of the *$h* properties are created by _SiteClass_.
+All of the *$h* properties are created by _SimpleSiteClass_.
 
 These 'xxxFile' files return their contents. You can ignore using *$h* values and just have standard html in the files.
 
-You will see, if you delve into the SiteClass code, that many things can be passed to the getPageTopBottom method,  
+You will see, if you delve into the SimpleSiteClass code, that many things can be passed to the getPageTopBottom method,  
 and the various sub-methods, but the standard things are:
 
 * title
@@ -77,7 +77,7 @@ For example it might look like this:
 
 ```php
 $_site = require_once(getenv("SITELOADNAME"));
-$S = new SiteClass($_site);
+$S = new SimpleSiteClass($_site);
 $S->title = 'my title';
 $S->desc = 'This is the description';
 $S->link = '<link rel="stylesheet" href="test.css">';
@@ -98,7 +98,7 @@ In the 'mysitemap.json' just add the full path to the file. For example:
 {
     "siteDomain": "localhost",
     "siteName": "YourSiteName",
-    "className": "SiteClass",
+    "className": "SimpleSiteClass",
     "copyright": "2016 Barton L. Phillips",
     "memberTable": "members",
     "noTrack": true,
@@ -124,8 +124,8 @@ Creating the special files make the tedious boiler plate simple and yet configur
 ---
 
 [Examples](examples.html)  
-[dbTables](dbTables.html)  
-[SiteClass Methods](siteclass.html)  
+[SimpledbTables](dbTables.html)  
+[SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
 [Index](index.html)
 

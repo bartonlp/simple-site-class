@@ -1,17 +1,17 @@
-# dbTables Documentation
+# SimpledbTables Documentation
 
 ---
 
-The **dbTables** makes creating tables simple.
+The **SimpledbTables** makes creating tables simple.
 
 ```php
 <?php
-// example using dbTables
+// example using SimpledbTables
 
 $_site = require_once(getenv("SITELOADNAME"));
 
 $S = new $_site->className($_site);
-$T = new dbTables($S);
+$T = new SimpledbTables($S);
 
 // Pass some info to getPageTopBottom method
 $S->title = "Example"; // Goes in the <title></title>
@@ -98,7 +98,7 @@ $info = $T->maketable($sql, array('callback'=>callback1, 'callback2'=>callback2,
 // $info[0] or $info['table'] is the table html.
 ```
 
-There is a second **dbTables** method which is not used directly as much. This method is called by 'maketable'. It creates only the result rows.
+There is a second **SimpledbTables** method which is not used directly as much. This method is called by 'maketable'. It creates only the result rows.
 
 ```bash
   /**
@@ -125,7 +125,7 @@ There is a second **dbTables** method which is not used directly as much. This m
   public function makeresultrows($query, $rowdesc, array $extra=array()) {...}
 ```
 
-## dbTables Methods
+## SimpledbTables Methods
 
 * constructor
 * public function makeresultrows($query, $rowdesc, array $extra=array())
@@ -139,8 +139,8 @@ $extra['footer'] a footer string
 ---
 
 [Examples](examples.html)  
-[dbTables](dbTables.html)  
-[SiteClass Methods](siteclass.html)  
+[SimpledbTables](dbTables.html)  
+[SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
 [Index](index.html)
 
