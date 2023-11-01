@@ -40,6 +40,7 @@ $S = new $_site->className($_site);
 
 $S->title = "Example 3"; // The <title>
 $S->banner = "<h1>Example Three</h1>"; // This is the banner.
+$S->defaultCss = "../css/style.css";
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.

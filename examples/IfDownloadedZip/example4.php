@@ -24,6 +24,7 @@ $S = new $_site->className($_site);
 // The $h object has information that is passed to the getPageTopBottom() function.  
 $S->title = "Example 4"; // The <title>
 $S->banner = "<h1>Example Four</h1>"; // This is the banner.
+$S->defaultCss = "../css/style.css";
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.

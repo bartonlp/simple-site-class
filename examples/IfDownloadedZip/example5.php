@@ -26,6 +26,7 @@ $T = new dbTables($S);
 // Pass some info to getPageTopBottom method
 $S->title = "Example 5"; // Goes in the <title></title>
 $S->banner = "<h1>Example Five</h1>"; // becomes the <header> section
+$S->defaultCss = "../css/style.css";
 // Add some local css to but a border and padding on the table 
 $S->css = <<<EOF
 main table * {
@@ -34,7 +35,7 @@ main table * {
 }
 EOF;
 
-$bot = ($S->isBot($S->agent)) ? "true" : "false";
+$bot = ($S->isBot($S->agent)) ? "Yes" : "No";
 
 [$top, $footer] = $S->getPageTopBottom();
 
@@ -45,7 +46,7 @@ $tbl = $T->maketable($sql)[0];
 echo <<<EOF
 $top
 <main>
-<p>BOTS=$bot</p>
+<p>Are you a BOTS? $bot.</p>
 <h3>Create a html table from the logagent database table</h3>
 <p>$sql</p>
 <p>The logagent table follows:</p>

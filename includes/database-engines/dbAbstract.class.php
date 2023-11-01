@@ -8,7 +8,7 @@ define("ABSTRACT_CLASS_VERSION", "1.0.0ab"); // BLP 2023-03-07 - remove $arg use
 // over again in each higher level class like SiteClass or Database.
 // The db engines (dbMysqli.class.php, etc.) have most of these methods implemented.
 
-abstract class dbAbstract {
+abstract class SimpledbAbstract {
   protected $db;
   
   /*

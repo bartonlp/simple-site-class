@@ -22,8 +22,10 @@ if(!class_exists("getinfo")) {
     private $docroot;
     private $mydir;
     private $_site;
-    
+
     public function __construct() {
+      //error_log("siteload simple-site-class");
+
       $old = error_reporting(E_ALL & ~(E_NOTICE | E_WARNING | E_STRICT));
 
       // Now check to see if we have a DOCUMENT_ROOT or VIRTUALHOST_DOCUMENT_ROOT.

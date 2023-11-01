@@ -7,7 +7,7 @@ define("DATABASE_CLASS_VERSION", "3.0.0database"); // BLP 2023-02-24 -
  * Database wrapper class
  */
 
-class Database extends dbAbstract {
+class SimpleDatabase extends simpledbAbstract {
   /**
    * constructor
    * @param $s object. $isSiteClass bool.
@@ -19,10 +19,11 @@ class Database extends dbAbstract {
 
   public function __construct(object $s) {
     // Do the parent dbAbstract constructor
-    
+    //error_log("Database for simple-site-class");
     parent::__construct($s);
 
     date_default_timezone_set("America/New_York");
+    error_log("Database.class.php ON HP-Envy simple-site-class: site=$this->siteName");
   } // END Construct
 
   /**

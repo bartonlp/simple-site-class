@@ -17,27 +17,12 @@ CREATE TABLE `logagent` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 PACK_KEYS=1;
 */
 
-function callback($class) {
-  switch($class) {
-    case "SimpleSiteClass":
-      require(__DIR__ . "/../includes/$class.php");
-      break;
-    default:
-      require(__DIR__ . "/../includes/database-engines/$class.class.php");
-      break;
-  }
-}
-
-if(spl_autoload_register("callback") === false) exit("Can't Autoload");
-
-require(__DIR__ . "/../includes/database-engines/helper-functions.php");
-
-$_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
-
-$S = new $_site->className($_site);
+$_site = require_once(getenv("SITELOADNAME"));
+$S = new SimpleSiteClass($_site);
 
 $S->title = "Example 3"; // The <title>
 $S->banner = "<h1>Example Three</h1>"; // This is the banner.
+$S->defaultCss = "../css/style.css";
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.
@@ -77,7 +62,6 @@ $tbl
 <a href="example3.php">Example3</a><br>
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
-<a href="hi.php">Hi</a><br>
-<a href="phpinfo.php">PHPINFO</a>
+<a href="../phpinfo.php">PHPINFO</a>
 $footer
 EOF;

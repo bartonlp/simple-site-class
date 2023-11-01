@@ -6,7 +6,6 @@
   "siteDomain": "localhost",
   "siteName": "Examples",
   "mainTitle": "Examples",
-    //"emailDomain": "bartonlp.org",
   "path": "/var/www/simple-site-class-master/examples", // This needs to be changes to your directory.
   "className": "SimpleSiteClass",
   "copyright": "Barton L. Phillips",

@@ -7,7 +7,7 @@
 
 define("SQLEXCEPTION_CLASS_VERSION", "2.1.2exception"); // BLP 2023-06-23 - 
 
-class SqlException extends Exception {
+class SimpleSqlException extends Exception {
   /**
    * Constructor
    * @param string $message: text which tells what went wrong

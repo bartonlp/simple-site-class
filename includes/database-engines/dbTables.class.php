@@ -6,7 +6,7 @@ define("DBTABLE_CLASS_VERSION", "1.0.1dbTables"); // BLP 2023-01-31 -
 
 // Make database tables given either a SiteClass or Database class object.
 
-class dbTables {
+class SimpledbTables {
   private $db;
 
   /**

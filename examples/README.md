@@ -1,27 +1,31 @@
 # Examples
 
-I have included a couple of examples to show how to use the SiteClass.
-
-First you will need to install mysql if you don't already have it. You will need to install the PHP extension for mysql. The SiteClass code
-runs with PHP 8 so it may not work with older versions of PHP.
+First you will need to install mysql if you don't already have it. You will need to install the PHP extension for mysql. 
+The SimpleSiteClass code runs with PHP 8, and it may not work with older versions of PHP.
 
 Once you have mysql and the PHP extension you can set up mysql. These examples use a database called 'barton' with user 'barton'. There is
-a file in this directory called schema.sql. You can run it in mysql and create the database and the tables.
+a file in this directory called schema.sql. You can run it in mysql and create the table.
 
-There is a *mysitemap.json* file in the directory above this. It has the setup information and is pretty well documented. Oh, it is really
-not a true *json* file as it can contain comments. After I remove the comments programatcally it is a true *json* file which I run
-throush json_decode() so it must be valid *json*.
-
-I have set up a .htaccess file which has a RewriteRule to redirect a css file to *tracker.php* for tracking.
-
-The 'examples' directory should have everything you will need to run the examples including header, banner and footer files as well as css, 
-images and fonts.
+I have set up a .htaccess file which has the *Header set* for the site loader.
 
 Now that the database is set up you can run the examples.
 
-If you are just trying this out you can use the PHP server: <code>PHP -S localhost:8080</code>. You can change the port to what you want.   
-Then use your browser to go to: <code>localhost:8080/&lt;an example&gt;</code>. See the example programs in the examples directory.
+I have included a couple of examples to show how to use the SimpleSiteClass. They are in two seperate directories: IfComposer and IfDownloadedZip.
+If you set up your directory structure as:  
+/var/www/  
+/var/html  
+and used **composer** to create a /var/www/vendor/bartonlp/simple-site-class directory, you should use IfComposer examples.  
+If you downloaded the zip file from github.com/bartonlp/simple-site-class you should use the IfDownloadedZip directory.
+
+In either case, from the *examples* directory in the downloaded location, do:
+php -S localhost:3000  
+Then open your browser and enter:  
+localhost:3000/example1.php
+
+Each example has links to the rest of the examples.
 
 Any questions can be directed to bartonphillips@gmail.com
 
 Have fun
+
+Last Modified October 31, 2023

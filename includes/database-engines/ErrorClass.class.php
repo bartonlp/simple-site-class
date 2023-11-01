@@ -289,7 +289,7 @@ set_exception_handler('my_exceptionhandler');
  * else it is set as bellow along with the set_error_handler().
  */
 
-class ErrorClass {
+class SimpleErrorClass {
   private static $noEmail = false;
   private static $development = false;
   private static $noHtml = false;

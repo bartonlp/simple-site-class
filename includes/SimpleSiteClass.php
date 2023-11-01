@@ -26,7 +26,7 @@ define("SITE_CLASS_VERSION", "1.0.0simple");
 
 use \bartonlp\siteload\getinfo as load;
 
-class SimpleSiteClass extends Database {
+class SimpleSiteClass extends SimpleDatabase {
   // Give these default values incase they are not mentioned in mysitemap.json.
   // Note they could still be null from mysitemap.json!
 
@@ -333,14 +333,6 @@ EOF;
 
     if($this->noLastmod !== true) {
       $lastmod = "Last Modified: " . date("M j, Y H:i", getlastmod());
-    }
-
-    // BLP 2022-01-28 -- add noGeo
-
-    if($this->noGeo !== true) {
-      $geo = $this->gioLocation ?? "https://bartonphillips.net/js";
-      
-      $geo = "<script src='$geo/geo.js'></script>";
     }
 
     // BLP 2022-04-09 - We can put the footerFile into $b or use it from mysitemap.json

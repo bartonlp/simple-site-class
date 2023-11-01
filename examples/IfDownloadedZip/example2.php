@@ -37,6 +37,7 @@ $CLASS = print_r($S, true);
 
 $S->title = "Example2"; // The <title>
 $S->banner = "<h1>Example Two</h1>"; // This is the banner.
+$S->defaultCss = "../css/style.css";
 // Add some css.
 $S->css =<<<EOF
 pre { font-size: 8px; }

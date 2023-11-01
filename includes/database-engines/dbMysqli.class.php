@@ -27,7 +27,7 @@ define("MYSQL_CLASS_VERSION", "3.0.0mysqli");
  * @package Mysqli Database
  */
 
-class dbMysqli extends dbAbstract {
+class SimpledbMysqli extends SimpledbAbstract {
   //protected $db; // BLP 2023-06-24 - defined in dbAbastract.
   
   private $result; // for select etc. a result set.
