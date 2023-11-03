@@ -10,6 +10,7 @@ function callback($class) {
       require(__DIR__ . "/../../includes/$class.php");
       break;
     default:
+      $class = preg_replace("~Simple~", "", $class);
       require(__DIR__ . "/../../includes/database-engines/$class.class.php");
       break;
   }
@@ -17,9 +18,9 @@ function callback($class) {
 
 if(spl_autoload_register("callback") === false) exit("Can't Autoload");
 
-require(__DIR__ . "/../../includes/database-engines/helper-functions.php");
+require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
 
-ErrorClass::setDevelopment(true);
+SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
@@ -47,8 +48,9 @@ EOF;
 
 echo <<<EOF
 $top
-<pre>\$_site: $SITE</pre>
-<pre>\$S: $CLASS</pre>
+<hr>
+<pre>This is the value of the data in mysitemap.json. \$_site: $SITE</pre>
+<pre>This is the value of the instantiated class. \$S: $CLASS</pre>
 <hr>
 <a href="example1.php">Example1</a><br>
 <a href="example2.php">Example2</a><br>
@@ -56,5 +58,6 @@ $top
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
+<hr>
 $footer
 EOF;

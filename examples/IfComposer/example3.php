@@ -17,7 +17,7 @@ CREATE TABLE `logagent` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 PACK_KEYS=1;
 */
 
-$_site = require_once(getenv("SITELOADNAME"));
+$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
 $S = new SimpleSiteClass($_site);
 
 $S->title = "Example 3"; // The <title>
@@ -44,6 +44,7 @@ $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
 echo <<<EOF
 $top
+<hr>
 <p>Here are the entries from the 'logagent' table for today.</p>
 <table border='1'>
 <thead>
@@ -63,5 +64,6 @@ $tbl
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
+<hr>
 $footer
 EOF;

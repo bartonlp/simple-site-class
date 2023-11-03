@@ -75,7 +75,7 @@ class SimpledbMysqli extends SimpledbAbstract {
     if($db->connect_errno) {
       $this->errno = $db->connect_errno;
       $this->error = $db->connect_error;
-      throw new SqlException(__METHOD__ . ": Can't connect to database", $this);
+      throw new SimpleSqlException(__METHOD__ . ": Can't connect to database", $this);
     }
 
     // BLP 2021-12-31 -- EST/EDT New York
@@ -100,7 +100,7 @@ class SimpledbMysqli extends SimpledbAbstract {
     if($this->db) {
       return $this->db;
     }
-    throw new SqlException(__CLASS__ . " " . __LINE__ .": $this->siteName ", $this);
+    throw new SimpleSqlException(__CLASS__ . " " . __LINE__ .": $this->siteName ", $this);
   }
 
   /**
@@ -124,7 +124,7 @@ class SimpledbMysqli extends SimpledbAbstract {
     
     if($result === false) {
       //echo "Throw<br>"; // BLP 2023-01-15 - to test PHP 8.1
-      throw new SqlException($query, $this);
+      throw new SimpleSqlException($query, $this);
     }
 
     // result is a mixed result-set for select etc, true for insert etc.
@@ -177,7 +177,7 @@ class SimpledbMysqli extends SimpledbAbstract {
   
   public function queryfetch($query, $type=null, $returnarray=null) {
     if(stripos($query, 'select') === false) { // Can't be anything but 'select'
-      throw new SqlException($query, $this);
+      throw new SimpleSqlException($query, $this);
     }
 
     // queryfetch() can be
@@ -217,11 +217,11 @@ class SimpledbMysqli extends SimpledbAbstract {
       $type = $result;
       $result = $this->result;
     } elseif(get_class($result) != "mysqli_result") { // BLP 2022-01-17 -- use get_class() not get_debug_type() as it is only PHP8
-      throw new SqlException("dbMysqli.class.php " .__LINE__. "get_class() is not an 'mysqli_result'", $this); // BLP 2023-06-24 - add $this
+      throw new SimpleSqlException("dbMysqli.class.php " .__LINE__. "get_class() is not an 'mysqli_result'", $this); // BLP 2023-06-24 - add $this
     } 
 
     if(!$result) {
-      throw new SqlException(__METHOD__ . ": result is null", $this);
+      throw new SimpleSqlException(__METHOD__ . ": result is null", $this);
     }
 
     switch($type) {

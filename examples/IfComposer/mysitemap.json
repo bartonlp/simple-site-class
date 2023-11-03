@@ -7,11 +7,12 @@
   "siteName": "Examples",
   "mainTitle": "Examples",
     //"emailDomain": "bartonlp.org",
-  "path": "/var/www/simple-site-class-master/examples", // This needs to be changes to your directory.
+  "path": "/var/www/simple-site-class/examples", // This needs to be changes to your directory.
   "className": "SimpleSiteClass",
   "copyright": "Barton L. Phillips",
   "author": "Barton L. Phillips, mailto:bartonphillips@gmail.com",
   "address": "New Bern, North Carolina",
+  "noTrack": false, // set this to true to keep the class from logging visitor activity in the logagent table. 
   "masterdb": "barton",
   "dbinfo": {
     "host": "localhost", //"bartonphillips.com",

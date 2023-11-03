@@ -1,10 +1,13 @@
 <?php
+// This example will log into the logagent table unless noTrack is set to true in mysitemap.json
+
 function callback($class) {
   switch($class) {
     case "SimpleSiteClass":
       require(__DIR__ . "/../../includes/$class.php");
       break;
     default:
+      $class = preg_replace("~Simple~", "", $class);
       require(__DIR__ . "/../../includes/database-engines/$class.class.php");
       break;
   }
@@ -12,11 +15,12 @@ function callback($class) {
 
 if(spl_autoload_register("callback") === false) exit("Can't Autoload");
 
-require(__DIR__ . "/../../includes/database-engines/helper-functions.php");
+require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
 
-ErrorClass::setDevelopment(true);
+SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
+
 $S = new SimpleSiteClass($_site);
 
 // Get the info in $S
@@ -34,7 +38,8 @@ EOF;
 
 echo <<<EOF
 $top
-<pre>\$S: $CLASS</pre>
+<hr>
+<pre>This is the value of the instantiated class. \$S: $CLASS</pre>
 <hr>
 <a href="example1.php">Example1</a><br>
 <a href="example2.php">Example2</a><br>

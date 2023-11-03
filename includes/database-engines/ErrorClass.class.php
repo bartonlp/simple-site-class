@@ -24,6 +24,7 @@ define("ERROR_CLASS_VERSION", "2.0.0error");
 //     the scope the error was triggered in. User error handler must not modify error context.  
 // If the function returns FALSE then the normal error handler continues.
 
+if(!function_exists("my_errorhandler")) {
 function my_errorhandler($errno, $errstr, $errfile, $errline) { //, array $errcontext=null) {
   $errortype = array (
                       E_ERROR              => 'Error',
@@ -86,6 +87,7 @@ function my_errorhandler($errno, $errstr, $errfile, $errline) { //, array $errco
   finalOutput($errmsg, "{$errortype[$errno]}");
   return true; // DON'T do normal error handeling.
 }
+}
 
 //******************************  
 // Set up an exception handler if one is not already defined
@@ -94,6 +96,7 @@ function my_errorhandler($errno, $errstr, $errfile, $errline) { //, array $errco
 // ErrorClass::$nohtml
 // ErrorClass::$noEmail
 
+if(!function_exists("my_exceptionhandler")) {
 function my_exceptionhandler($e) {
   //error_log("Top of my_exceptionhandler");
   $cl =  get_class($e);
@@ -162,15 +165,17 @@ EOF;
   }
 
   finalOutput($error, $cl);
-//  if(ErrorClass::getExitonerror() === true) {
+//  if(SimpleErrorClass::getExitonerror() === true) {
 //    exit();
 //  }
+}
 }
 
 // Do the final output part of the error/exception
 // $error is the html minus the div with ERROR
 // $from is Error or Exception
 
+if(!function_exists("finalOutput")) {
 function finalOutput($error, $from) {
   //error_log("ErrorClass: finalOutput");
   // For use by Email and database.log
@@ -195,7 +200,7 @@ function finalOutput($error, $from) {
   // Email error information to webmaster
   // During debug set the Error class's $noEmail to ture
   
-  if(ErrorClass::getNoEmail() !== true) {
+  if(SimpleErrorClass::getNoEmail() !== true) {
     $s = $GLOBALS["_site"];
 
     $recipients = "{\"address\": {\"email\": \"$s->EMAILADDRESS\",\"header_to\": \"$s->EMAILADDRESS\"}}";
@@ -245,7 +250,7 @@ EOF;
   error_log("ErrorClass.class.php, finalOutput: $from\n$err\n$userId");
   // ********************************************************
     
-  if(ErrorClass::getDevelopment() !== true) {
+  if(SimpleErrorClass::getDevelopment() !== true) {
     // Minimal error message
     $error = <<<EOF
 <p>The webmaster has been notified of this error and it should be fixed shortly. Please try again in
@@ -256,7 +261,7 @@ EOF;
            " Please try again in a couple of hours.";
   }
 
-  if(ErrorClass::getNohtml() === true) {
+  if(SimpleErrorClass::getNohtml() === true) {
     $error = "$from: $err";
   } else {
     $error = <<<EOF
@@ -267,13 +272,14 @@ $error
 EOF;
   }
 
-  if(ErrorClass::getNoOutput() !== true) {
+  if(SimpleErrorClass::getNoOutput() !== true) {
     //************************
     // Don't remove this echo
     echo $error; // BLP 2022-01-28 -- on CLI this outputs to the console, on apache it goes to the client screen.
     //***********************
   }
   return;
+} 
 }
 
 // Set exception handler

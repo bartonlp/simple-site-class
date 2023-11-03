@@ -1,6 +1,7 @@
 <?php
 
-$_site = require_once(getenv("SITELOADNAME"));
+$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
+
 $S = new SimpleSiteClass($_site);
 
 // Get the info in $S
@@ -19,7 +20,8 @@ EOF;
 
 echo <<<EOF
 $top
-<pre>\$S: $CLASS</pre>
+<hr>
+<pre>This is the value of the instantiated class. \$S: $CLASS</pre>
 <hr>
 <a href="example1.php">Example1</a><br>
 <a href="example2.php">Example2</a><br>
@@ -27,5 +29,6 @@ $top
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
+<hr>
 $footer
 EOF;

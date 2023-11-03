@@ -1,4 +1,5 @@
 <?php
+
 /*
 CREATE TABLE `logagent` (
   `site` varchar(25) NOT NULL DEFAULT '',
@@ -23,6 +24,7 @@ function callback($class) {
       require(__DIR__ . "/../../includes/$class.php");
       break;
     default:
+      $class = preg_replace("~Simple~", "", $class);
       require(__DIR__ . "/../../includes/database-engines/$class.class.php");
       break;
   }
@@ -30,9 +32,9 @@ function callback($class) {
 
 if(spl_autoload_register("callback") === false) exit("Can't Autoload");
 
-require(__DIR__ . "/../../includes/database-engines/helper-functions.php");
+require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
 
-ErrorClass::setDevelopment(true);
+SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
@@ -55,13 +57,14 @@ while([$site, $ip, $agent, $finger, $count, $created, $lasttime] = $S->fetchrow(
 // For more information on dbTables you can look at the source or the documentation in the docs
 // directory on on line at https://bartonlp.github.io/site-class/
 
-$T = new dbTables($S);
+$T = new SimpledbTables($S);
 $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
 [$top, $footer] = $S->getPageTopBottom();
 
 echo <<<EOF
 $top
+<hr>
 <p>Here are the entries from the 'logagent' table for today.</p>
 <table border='1'>
 <thead>

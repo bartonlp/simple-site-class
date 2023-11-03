@@ -1,5 +1,7 @@
 # For Examples
 # If you have /var/www/vendor and have copied the examples directory to /var/www/html
+# then you can use $_site = require_once(getenv("SITELOADNAME")); Otherwise, you will need the full
+# path in the require_once. See the examples in IfComposer directory.
 Options +Indexes
 Require all granted
 # NOTE your apache must have mod_env, mod_headers and mod_rewrite

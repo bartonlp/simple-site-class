@@ -17,7 +17,7 @@ abstract class SimpledbAbstract {
    */
   
   protected function __construct(object $s) {
-    $this->errorClass = new ErrorClass();
+    $this->errorClass = new SimpleErrorClass();
 
     // If we have $s items use them otherwise get the defaults
 
@@ -55,16 +55,16 @@ abstract class SimpledbAbstract {
 
     // BLP 2023-01-26 - currently there is only ONE viable engine and that is dbMysqli
     
-    $class = "db" . ucfirst(strtolower($dbinfo->engine));
+    $class = "Simpledb" . ucfirst(strtolower($dbinfo->engine));
     
     if(class_exists($class)) {
       $db = new $class($dbinfo);
     } else {
-      throw new SqlException(__METHOD__ . ": Class Not Found : $class<br>", $this);
+      throw new SimpleSqlException(__METHOD__ . ": Class Not Found : $class<br>", $this);
     }
 
     if(is_null($db) || $db === false) {
-      throw new SqlException(__METHOD__ . ": Connect failed", $this);
+      throw new SimpleSqlException(__METHOD__ . ": Connect failed", $this);
     }
     
     $this->db = $db;
@@ -73,7 +73,14 @@ abstract class SimpledbAbstract {
     
     $this->agent = $this->escape($this->agent);
 
-    $this->logagent(); 
+    // This needs to be set before the class in instantiated. It can be done via mysitemap.json or
+    // by setting $_site->noTrack. If noTrack is not true we log.
+    // This can also be disabled by setting nodb to true or not including dbinfo in mysitemap.json,
+    // but then no database action can happen.
+
+    if($this->noTrack !== true) {
+      $this->logagent();
+    }
   }
 
   // Each child class needs to have a __toString() method
@@ -245,7 +252,7 @@ abstract class SimpledbAbstract {
   protected function debug(string $msg, $exit=false):void {
     if($this->noErrorLog === true) {
       if($exit === true) {
-        throw new SqlException($msg, $this);
+        throw new SimpleSqlException($msg, $this);
       }
       return;
     }
@@ -253,7 +260,7 @@ abstract class SimpledbAbstract {
     error_log("debug:: $msg");
 
     if($exit === true) {
-      throw new SqlException($msg, $this);
+      throw new SimpleSqlException($msg, $this);
     }
   }
 }

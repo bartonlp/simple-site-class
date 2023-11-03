@@ -70,7 +70,7 @@ class SimpleSqlException extends Exception {
 
     // BLP 2023-06-22 - START
     
-    if(ErrorClass::getNobacktrace() === false) {
+    if(SimpleErrorClass::getNobacktrace() === false) {
       $firstcaller = '';
 
       $args = '';
@@ -111,7 +111,7 @@ class SimpleSqlException extends Exception {
       }
     }
 
-    if(ErrorClass::getErrlast() === true) {
+    if(SimpleErrorClass::getErrlast() === true) {
       $cnt = count($backtrace) -1;
       $caller = $backtrace[$cnt];
     } 
