@@ -50,7 +50,7 @@ Also, the dbMysqli is well documented in the SimpledbMysqli.Class.php file.
 [SimpledbTables](dbTables.html)  
 [SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
-[Examples]{examples.html)  
+[Examples](examples.html)  
 [Index](index.html)
 
 ## Contact Me
