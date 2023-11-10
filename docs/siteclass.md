@@ -50,12 +50,12 @@ Also, the dbMysqli is well documented in the SimpledbMysqli.Class.php file.
 [SimpledbTables](dbTables.html)  
 [SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
-[Examples](examples.html)  
+[Examples](examplereadme.html)  
 [Index](index.html)
 
 ## Contact Me
 
 Barton Phillips : <a href="mailto://bartonphillips@gmail.com">bartonphillips@gmail.com</a>  
 Copyright &copy; 2023 Barton Phillips  
-Project maintained by [bartonlp](https://github.com/bartonlp)  
-Last modified October 29,2023
+Project maintained by [Barton Phillips](https://github.com/bartonlp)  
+Last modified November 10, 2023

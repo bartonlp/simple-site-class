@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>examplereadme</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="examples">Examples</h1>
+<p><strong>INPORTANT NOTE:</strong> you can disable the log function by
+either setting <code>$_site-&gt;noTrack=true</code> or adding
+<code>"noTrack":true,</code> to the mysitemap.json. Doing either of
+those things will keep the <strong>SimpleSiteClass</strong> from using
+the <em>logagent</em> table to log visitors. This will also mean that
+some of the example programs will not work.</p>
+<p>First you will need to install mysql if you don't already have it.
+You will need to install the PHP extension for mysql. The
+<strong>SimpleSiteClass</strong> code runs with <strong>PHP 8</strong>,
+and it may not work with older versions of PHP.</p>
+<p>Once you have mysql and the PHP extension you can set up mysql. These
+examples use a database called <em>barton</em> with user
+<em>barton</em>. There is a file in this directory called
+<em>schema.sql</em>. You can run it in mysql and create the table.</p>
+<p>Now that the database is set up you can run the examples.</p>
+<p>I have included a couple of examples to show how to use the
+<strong>SimpleSiteClass</strong>. They are in two seperate directories:
+<em>IfComposer</em> and <em>IfDownloadedZip</em>. If you set up your
+directory structure as:<br />
+<code>/var/www/</code><br />
+<code>/var/www/html</code><br />
+and used <strong>composer</strong> to create a
+<em>/var/www/vendor/bartonlp/simple-site-class</em> directory, you
+should use <em>IfComposer</em> examples.<br />
+If you downloaded the zip file from <em><a
+href="https://github.com/bartonlp/simple-site-class">https://github.com/bartonlp/simple-site-class</a></em>
+you should use the <em>IfDownloadedZip</em> directory.</p>
+<p>In either case, from the <em>examples</em> directory in the
+downloaded location, do:<br />
+<code>php -S localhost:3000</code><br />
+Then open your browser and enter:<br />
+<code>localhost:3000/IfComposer/example1.php</code><br />
+or<br />
+<code>localhost:3000/IfDownloadedZip/example1.php</code></p>
+<p>Each example has links to the rest of the examples.</p>
+<p>Note, that when running with the PHP server it does not use the
+apache <em>.htaccess</em> file.</p>
+<p>You can run both sets of examples from a browser if you have the
+apache server running on your machine. The <em>IfComposer</em> examples
+should just work. In the <em>IfComposer</em> directory I have a
+<em>.htaccess</em> file which has the <em>Header set</em> for the site
+loader.</p>
+<p>The <em>IfDownloadedZip</em> examples need to have the
+<em>includes</em> directory, from the zip file, moved to the directory
+above the <em>examples</em> directory. Or, you can edit the examples and
+change the <code>__DIR__ . "/../../</code>, in the 'callback' function
+at the top of the file, to an absolute path.</p>
+<p>Any questions can be directed to Barton Phillips at <a
+href="mail-to:bartonphillips@gmail.com"><span>bartonphillips@gmail.com</span></a></p>
+<p>Have fun</p>
+<hr />
+<p><a href="examplereadme.html">Examples</a><br />
+<a href="dbTables.html">SimpledbTables</a><br />
+<a href="siteclass.html">SimpleSiteClass Methods</a><br />
+<a href="files.html">Additional Files</a><br />
+<a href="index.html">Index</a></p>
+<h2 id="contact-me">Contact Me</h2>
+<p>Barton Phillips : <a
+href="mailto://bartonphillips@gmail.com"><span>bartonphillips@gmail.com</span></a><br />
+Copyright © 2023 Barton Phillips<br />
+Project maintained by <a href="https://github.com/bartonlp">Barton
+Phillips</a><br />
+Last Modified November 10, 2023</p>
+</body>
+</html>

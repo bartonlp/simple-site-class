@@ -123,7 +123,7 @@ Creating the special files make the tedious boiler plate simple and yet configur
 
 ---
 
-[Examples](examples.html)  
+[Examples](examplereadme.html)  
 [SimpledbTables](dbTables.html)  
 [SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
@@ -133,5 +133,5 @@ Creating the special files make the tedious boiler plate simple and yet configur
 
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
 Copyright &copy; 2023 Barton Phillips  
-Project maintained by [bartonlp](https://github.com/bartonlp)   
-Last Modified October 30, 2023
+Project maintained by [Barton Phillips](https://github.com/bartonlp)   
+Last Modified November 10, 2023

@@ -40,4 +40,16 @@ Any questions can be directed to Barton Phillips at [bartonphillips@gmail.com](m
 
 Have fun
 
-Last Modified October 31, 2023
+---
+
+[Examples](examplereadme.html)  
+[SimpledbTables](dbTables.html)  
+[SimpleSiteClass Methods](siteclass.html)  
+[Additional Files](files.html)  
+[Index](index.html)
+## Contact Me
+Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
+Copyright &copy; 2023 Barton Phillips  
+Project maintained by [Barton Phillips](https://github.com/bartonlp)  
+Last Modified November 10, 2023
+
