@@ -1,13 +1,13 @@
 <?php
 /* Well tested and maintained */
 
-define("DATABASE_CLASS_VERSION", "1.0.0database"); // BLP 2023-02-24 -
+define("DATABASE_CLASS_VERSION", "1.0.1database"); // BLP 2023-02-24 -
 
 /**
  * Database wrapper class
  */
 
-class SimpleDatabase extends SimpledbAbstract {
+class SimpleDatabase extends SimpledbMysqli {
   /**
    * constructor
    * @param $s object. $isSiteClass bool.
@@ -18,13 +18,45 @@ class SimpleDatabase extends SimpledbAbstract {
    */
 
   public function __construct(object $s) {
-    // Do the parent dbAbstract constructor
-    //error_log("Database for simple-site-class");
-    parent::__construct($s);
+    // If we have $s items use them otherwise get the defaults
+
+    $s->ip = $_SERVER['REMOTE_ADDR'];
+    $s->agent = $_SERVER['HTTP_USER_AGENT']; 
+    $s->self = htmlentities($_SERVER['PHP_SELF']);
+    $s->requestUri = $_SERVER['REQUEST_URI'];
+
+    // Put all of the $s values into $this.
+    
+    foreach($s as $k=>$v) {
+      $this->$k = $v;
+    }
+    
+    // If no 'nodb' or 'dbinfo' (no database) in mysitemap.json set everything so the database is not loaded.
+    
+    if($this->nodb === true || is_null($this->dbinfo)) {
+      $this->nodb = true;    // Maybe $this->dbinfo was null
+      $this->dbinfo = null;  // Maybe nodb was set
+      return; // If we have NO DATABASE just return.
+    }
+
+    // Do the parent SimpledbMysqli constructor
+    // Now we can do mysql functions.
+    
+    parent::__construct($this);
+
+    $this->agent = $this->escape($this->agent);
+
+    // Setting noTrack needs to be set before the class in instantiated. It can be done via mysitemap.json or
+    // by setting $_site->noTrack. If noTrack is not true we log.
+    // This can also be disabled by setting nodb to true or not including dbinfo in mysitemap.json,
+    // but then no database action can happen.
+
+    if($this->noTrack !== true) {
+      $this->logagent();
+    }
 
     date_default_timezone_set("America/New_York");
-    //error_log("Database.class.php ON HP-Envy simple-site-class: site=$this->siteName");
-  } // END Construct
+  } // END Constructor
 
   /**
    * setSiteCookie()
@@ -74,6 +106,23 @@ class SimpleDatabase extends SimpledbAbstract {
 
   public function getIp():string {
     return $this->ip;
+  }
+
+
+  public function getDb() {
+    return $this->db;
+  }
+
+  public function setDb($db) {
+    $this->db = $db;
+  }
+
+  public function getDbError() {
+    return $this->db->error;
+  }
+
+  public function getDbErrno() {
+    return $this->db->errno;
   }
 
   /*

@@ -38,7 +38,7 @@ SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
-$S = new $_site->className($_site);
+$S = new SimpleSiteClass($_site);
 
 $S->title = "Example 3"; // The <title>
 $S->banner = "<h1>Example Three</h1>"; // This is the banner.
@@ -83,6 +83,7 @@ $tbl
 <a href="example3.php">Example3</a><br>
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
+<a href="example6.php">Example6</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
 $footer
 EOF;

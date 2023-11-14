@@ -19,26 +19,19 @@ SimpleErrorClass::setDevelopment(true);
 require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
-SimpleErrorClass::setDevelopment(true);
 
-$S = new SimpleSiteClass($_site);
-
-// The $h object has information that is passed to the getPageTopBottom() function.  
-$S->title = "Example 4"; // The <title>
-$S->banner = "<h1>Example Four</h1>"; // This is the banner.
-$S->defaultCss = "../css/style.css";
+$S = new SimpledbMysqli($_site);
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.
 
-$sql = "create table if not exists $S->masterdb.test (`name` varchar(20), `date` datetime, `lasttime` datetime)";
+$sql = "create table if not exists barton.test (`name` varchar(20), `date` datetime, `lasttime` datetime)";
 $S->query($sql);
 for($i=0; $i<5; $i++) {
   $name = "A-name$i";
-  $S->query("insert into $S->masterdb.test (name, date, lasttime) values('$name', now(), now())");
+  $S->query("insert into barton.test (name, date, lasttime) values('$name', now(), now())");
 }
-
-$sql = "select * from $S->masterdb.test order by lasttime";
+$sql = "select * from barton.test order by lasttime";
 
 // For more information on dbTables you can look at the source or the documentation in the docs
 // directory on on line at https://bartonlp.github.io/site-class/
@@ -46,14 +39,12 @@ $sql = "select * from $S->masterdb.test order by lasttime";
 $T = new SimpledbTables($S);
 $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
-$S->query("drop table $S->masterdb.test");
-
-[$top, $footer] = $S->getPageTopBottom();
+$S->query("drop table barton.test");
 
 echo <<<EOF
-$top
 <p>Here are some entries from the 'test' table.</p>
-<p>We are using the SimpledbTables class.</p>
+<p>We are using the SimpledbMysqli and SimpledbTables class. We can't have \$top or \$footer.
+Also, isBot() and many more things are not in the SimpledbMysqli class.</p>
 $tbl
 <hr>
 <a href="example1.php">Example1</a><br>
@@ -63,5 +54,4 @@ $tbl
 <a href="example5.php">Example5</a><br>
 <a href="example6.php">Example6</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
-$footer
 EOF;
