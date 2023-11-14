@@ -13,7 +13,7 @@ $SITE = print_r($_site, true);
 
 // Instantiate the Database from the className in the json file.
 
-$S = new $SimpleDatabase($_site); // You could also do 'new SimpleSiteClass($_site);'
+$S = new SimpleDatabase($_site); // You could also do 'new SimpleSiteClass($_site);'
 
 // Get the info in $S
 
