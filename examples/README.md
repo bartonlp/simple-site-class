@@ -20,10 +20,11 @@ and used **composer** to create a */var/www/vendor/bartonlp/simple-site-class* d
 If you downloaded the zip file from *https://github.com/bartonlp/simple-site-class* you should use the *IfDownloadedZip* directory. 
 
 In either case, from the *examples* directory in the downloaded location, do:  
-```php -S localhost:3000```  
+```export SITELOADNAME=/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php && php -S localhost:3000```  
 Then open your browser and enter:  
 ```localhost:3000/IfComposer/example1.php```  
 or  
+```php -S localhost:3000```  
 ```localhost:3000/IfDownloadedZip/example1.php```
 
 Each example has links to the rest of the examples.

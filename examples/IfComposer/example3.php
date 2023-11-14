@@ -17,7 +17,7 @@ CREATE TABLE `logagent` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 PACK_KEYS=1;
 */
 
-$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 $S = new SimpleSiteClass($_site);
 
 $S->title = "Example 3"; // The <title>

@@ -1,7 +1,7 @@
 <?php
 // example using dbTables
 
-$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 
 // *******************************************************************
 // Refresh this page and see if the logagent table count row changes.

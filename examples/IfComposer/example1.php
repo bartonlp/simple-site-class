@@ -1,6 +1,6 @@
 <?php
 
-$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
+$_site = require_once(getenv("SITELOADNAME"));
 
 $S = new SimpleSiteClass($_site);
 

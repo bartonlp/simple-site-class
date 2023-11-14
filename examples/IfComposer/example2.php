@@ -4,7 +4,7 @@
 // You will need the Apache2 setenvif module.
 // This gets the siteload.php from the includes directory.
 
-$_site = require_once("/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php");
+$_site = require_once(getenv("SITELOADNAME")); 
 $S = new SimpleSiteClass($_site);
 
 // Get the information from the mysitemap.json in the directory above this one.

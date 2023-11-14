@@ -22,7 +22,7 @@
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="pandoc.css" />
+  <link rel="stylesheet" href="stylesheets/pandoc.css" />
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -58,10 +58,11 @@ href="https://github.com/bartonlp/simple-site-class">https://github.com/bartonlp
 you should use the <em>IfDownloadedZip</em> directory.</p>
 <p>In either case, from the <em>examples</em> directory in the
 downloaded location, do:<br />
-<code>php -S localhost:3000</code><br />
+<code>export SITELOADNAME=/var/www/vendor/bartonlp/simple-site-class/includes/siteload.php &amp;&amp; php -S localhost:3000</code><br />
 Then open your browser and enter:<br />
 <code>localhost:3000/IfComposer/example1.php</code><br />
 or<br />
+<code>php -S localhost:3000</code><br />
 <code>localhost:3000/IfDownloadedZip/example1.php</code></p>
 <p>Each example has links to the rest of the examples.</p>
 <p>Note, that when running with the PHP server it does not use the

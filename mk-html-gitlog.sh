@@ -4,7 +4,7 @@
 
 # Make .html files from .md files
 pagetitle="Main Readme file";
-/usr/bin/pandoc -Vpagetitle="$pagetitle" --css=pandoc.css --standalone -f gfm -t html5 README.md -o README.html
+/usr/bin/pandoc -Vpagetitle="$pagetitle" --css=docs/stylesheets/pandoc.css --standalone -f gfm -t html5 README.md -o README.html
 
 # now move into the docs directory and do those html files
 
@@ -16,13 +16,13 @@ pagetitle="index";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=./stylesheets/styles.css --standalone index.md -o index.html
 echo "dbTables";
 pagetitle="dbTables";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=pandoc.css --standalone dbTables.md -o dbTables.html
+/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone dbTables.md -o dbTables.html
 echo "simplesiteclass";
 pagetitle="SimpleSiteClass Methods";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=pandoc.css --standalone siteclass.md -o siteclass.html
+/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone siteclass.md -o siteclass.html
 pagetitle="Additional Files";
 echo "files";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=pandoc.css --standalone files.md -o files.html
+/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone files.md -o files.html
 pagetitle="examplereadme";
 echo "examplereadme";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=pandoc.css --standalone examplereadme.md -o examplereadme.html
+/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone ../examples/README.md -o examplereadme.html
