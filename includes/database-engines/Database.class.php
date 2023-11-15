@@ -12,9 +12,6 @@ class SimpleDatabase extends SimpledbMysqli {
    * constructor
    * @param $s object. $isSiteClass bool.
    * $s should have all of the $this from SiteClass or $_site from mysitemap.json
-   * To just pass in the required database options set $s->dbinfo = (object) $ar
-   * where $ar is an assocative array with ["host"=>"localhost",...]
-   * $isSiteClass is true if this is from SiteClass.
    */
 
   public function __construct(object $s) {
@@ -127,8 +124,6 @@ class SimpleDatabase extends SimpledbMysqli {
 
   /*
    * isBot(string $agent):bool
-   * *** This is ONLY called from checkIfBot() in the dbAbstract constructor!
-   * *** However, it can be called by applications using $S.
    * Determines if an agent is a bot or not.
    * @return bool
    * Side effects:
