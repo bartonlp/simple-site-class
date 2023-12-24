@@ -7,7 +7,7 @@ define("DATABASE_CLASS_VERSION", "1.0.1database"); // BLP 2023-02-24 -
  * Database wrapper class
  */
 
-class SimpleDatabase extends SimpledbMysqli {
+class SimpleDatabase extends SimpledbPdo {
   /**
    * constructor
    * @param $s object. $isSiteClass bool.
@@ -40,8 +40,6 @@ class SimpleDatabase extends SimpledbMysqli {
     // Now we can do mysql functions.
     
     parent::__construct($this);
-
-    $this->agent = $this->escape($this->agent);
 
     // Setting noTrack needs to be set before the class in instantiated. It can be done via mysitemap.json or
     // by setting $_site->noTrack. If noTrack is not true we log.
@@ -140,7 +138,7 @@ class SimpleDatabase extends SimpledbMysqli {
       $this->foundBotAs = BOTAS_MATCH;
     } elseif($x === false) { // false is error
       // This is an unexplained ERROR
-      throw new SqlExceiption(__CLASS__ . " " . __LINE__ . ": preg_match() returned false", $this);
+      throw new SimpleSqlExceiption(__CLASS__ . " " . __LINE__ . ": preg_match() returned false", $this);
     }
     return $this->isBot;
   }
@@ -169,7 +167,7 @@ class SimpleDatabase extends SimpledbMysqli {
            "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now()) ".
            "on duplicate key update count=count+1, lasttime=now()";
 
-    $this->query($sql);
+    $this->sql($sql);
   }
 
   // ************
@@ -180,3 +178,4 @@ class SimpleDatabase extends SimpledbMysqli {
     return __CLASS__;
   }
 }
+
