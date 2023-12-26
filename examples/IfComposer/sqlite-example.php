@@ -13,7 +13,7 @@ $T = new SimpledbTables($S);
 
 // Pass some info to getPageTopBottom method
 $S->title = "Example 5"; // Goes in the <title></title>
-$S->banner = "<h1>Example Five</h1><p>Using engine=".$S->dbinfo->engine.", database=".$S->dbinfo->database."</p>";
+$S->banner = "<h1>Sqlite Example</h1><p>Using engine=".$S->dbinfo->engine.", database=".$S->dbinfo->database."</p>";
 $S->defaultCss = "../css/style.css";
 // Add some local css to but a border and padding on the table 
 $S->css = <<<EOF
@@ -23,8 +23,8 @@ main table * {
 }
 EOF;
 
-$S->agent = "I-am-a-BOT";
-$bot = ($S->isBot($S->agent)) ? "Yes" : "No";
+$bot1 = ($S->isBot($S->agent)) ? "Yes" : "No";
+$bot2 = ($S->isBot("I-am-a-BOT")) ? "Yes" : "No";
 
 [$top, $footer] = $S->getPageTopBottom();
 
@@ -52,7 +52,10 @@ echo <<<EOF
 $top
 <hr>
 <main>
-<p>Are you a BOTS? $bot.</p>
+<p>Your IP=$S->ip, User Agent String=$S->agent.<br>
+Are you a BOT? $bot1.</p>
+<p>If your User Agent String were 'I-am-a-BOT' then,<br>
+Are you a BOT? $bot2.</p>
 <p>The value of logarent count=$count</p>
 <h3>Create a html table from the logagent database table</h3>
 <p>$sql</p>
