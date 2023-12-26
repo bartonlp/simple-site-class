@@ -28,7 +28,7 @@ $S->defaultCss = "../css/style.css";
 // in the docs directory.
 
 $sql = "select site, ip, agent, finger, count, created, lasttime from $S->masterdb.logagent where lasttime>=current_date() and site='Examples'";
-$S->query($sql);
+$S->sql($sql);
 while([$site, $ip, $agent, $finger, $count, $created, $lasttime] = $S->fetchrow('num')) {
   $rows .= "<tr><td>$site</td><td>$ip</td><td>$agent</td><td>$finger</td><td>$count</td><td>$created</td><td>$lasttime</td></tr>";
 }

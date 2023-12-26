@@ -186,12 +186,108 @@ class SimpleSiteClass extends SimpleDatabase {
     $htmlextra = $this->htmlextra; // Must be full html
     
     if($this->nojquery !== true) {
+      $logoImgLocation = $this->logoImgLocation ?? "https://bartonphillips.net"; // BLP 2023-08-08 -
+      $headerImg2Location = $this->headerImg2Location ?? $logoImgLocation ?? "https://bartonphillips.net"; // BLP 2023-08-10 -
+
+      // The trackerImg... can start with http or https. If so use the full url.
+
+      if(strpos($this->trackerImg1, "http") === 0) {
+        $desktopImg = $this->trackerImg1;
+      } else {
+        $desktopImg = $this->trackerImg1 ? "$logoImgLocation/$this->trackerImg1" : null; // BLP 2023-08-08 -
+      }
+      if(strpos($this->trackerImgPhone, "http") === 0) {
+        $phoneImg = $this->trackerImgPhone;
+      } else {
+        $phoneImg = $this->trackerImgPhone ? "$logoImgLocation/$this->trackerImgPhone" : null; // BLP 2023-08-08 - 
+      }
+      if(strpos($this->trackerImg2, "http") === 0 ) {
+        $desktopImg2 = $this->trackerImg2;
+      } else {
+        $desktopImg2 = $this->trackerImg2 ? "$headerImg2Location/$this->trackerImg2" : null; // BLP 2023-08-10 -
+      }
+      if(strpos($this->trackerImgPhone2, "http") === 0) {
+        $phoneImg2 = $this->trackerImgPhone2;
+      } else {
+        $phoneImg2 = $this->trackerImgPhone2 ? "$headerImg2Location/$this->trackerImgPhone2" : null; // BLP 2023-08-10 - 
+      }
       $jQuery = <<<EOF
   <!-- jQuery BLP 2022-12-21 - Latest version -->
   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-migrate-3.4.0.min.js" integrity="sha256-mBCu5+bVfYzOqpYyK4jm30ZxAZRomuErKEFJFIyrwvM=" crossorigin="anonymous"></script>
-  <script>jQuery.migrateMute = false; jQuery.migrateTrace = false;</script>
-EOF;
+  <script>
+jQuery.migrateMute = false; jQuery.migrateTrace = false;
+const phoneImg = "$phoneImg";
+const desktopImg = "$desktopImg";
+const phoneImg2 = "$phoneImg2";
+const desktopImg2 = "$desktopImg2";
+console.log("phoneImg: " +phoneImg);
+jQuery(document).ready(function($) {
+  // BLP 2023-12-24 - The two comments below are not correct for SimpleSiteClass.
+  // **BLP 2023-08-08 - desktopImg and phoneImg are supplied by SiteClass::getPageHead();
+  // **BLP 2023-08-10 - Same logic as Img2
+
+  let picture;
+
+  if(phoneImg || desktopImg) {
+    picture = "<picture id='logo'>";
+    
+    if(phoneImg) {
+      picture += "<source srcset=" + phoneImg + " media='((hover: none) and (pointer: coarse))' alt='phoneImage'>";
+    }
+
+    if(desktopImg) {
+      picture += "<img src=" + desktopImg + " alt='desktopImage'>"
+    } else {
+      picture += "<img src=" + phoneImg + " alt='phoneImage'>";
+    }
+    
+    picture += "</picture>";
+
+    // BLP 2023-08-10 - This will remove the <img> tag and replace it
+    // with the <picture> tag.
+    
+    $("header a:first-of-type").first().html(picture);
+  }
+
+  // BLP 2023-08-10 - Here we need to remove the <img id='headerImage2'>
+  // before we replave it with a posible <picture> tag.
+  
+  $("#headerImage2").remove();
+
+  // BLP 2023-08-10 - look to see if we have any Img2 items.
+
+  if(phoneImg2 || desktopImg2) {
+    picture = "<picture id='headerImage2'>";
+
+    // BLP 2023-08-10 - Do we have a phoneImg2?
+    
+    if(phoneImg2) {
+      picture += "<source srcset=" + phoneImg2 + " media='((hover: none) and (pointer: coarse))' alt='phoneImage'>";
+    } 
+
+    // BLP 2023-08-10 - Do we have a desktopImg2?
+    
+    if(desktopImg2) {
+      picture += "<img src=" + desktopImg2 + " alt='desktopImage'>"
+    } else {
+      picture += "<img src=" + phoneImg2 + " alt='phoneImage'>";
+    }
+      
+    // BLP 2023-08-10 - If we have either finish off the picture tag.
+    
+    picture += "</picture>";
+    
+    $("header a:first-of-type").after(picture);
+  } 
+
+  // Show the Image we are using.
+
+  console.log("VARIABLES -- phoneImg: " + phoneImg + ", desktopImg: " + desktopImg +
+              ", phoneImg2: " + phoneImg2 + ", desktopImg2: " + desktopImg2);
+});
+</script>              
+EOF;              
     }
     
     $html = '<html lang="' . $lang . '" ' . $htmlextra . ">"; // stuff like manafest etc.

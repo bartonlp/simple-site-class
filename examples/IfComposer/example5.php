@@ -33,19 +33,19 @@ $bot = $S->isBot($S->agent) ? "Yes" : "No";
 [$top, $footer] = $S->getPageTopBottom();
 
 $sql = "create table if not exists $S->masterdb.test (`name` varchar(20), `date` datetime, `lasttime` datetime)";
-$S->query($sql);
+$S->sql($sql);
 for($i=0; $i<5; $i++) {
   $name = "A-name$i";
-  $S->query("insert into $S->masterdb.test (name, date, lasttime) values('$name', now(), now())");
+  $S->sql("insert into $S->masterdb.test (name, date, lasttime) values('$name', now(), now())");
 }
 
 $sql = "select * from $S->masterdb.test order by lasttime";
 
 $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
-$S->query("drop table $S->masterdb.test");
+$S->sql("drop table $S->masterdb.test");
 
-$S->query("select count from $S->masterdb.logagent where site='Examples' and ip='$S->ip' and agent='$S->agent' order by lasttime");
+$S->sql("select count from $S->masterdb.logagent where site='Examples' and ip='$S->ip' and agent='$S->agent' order by lasttime");
 $count = $S->fetchrow('num')[0];
 
 // For more information on dbTables you can look at the source or the documentation in the docs

@@ -1,25 +1,7 @@
 <?php
 // example using SimpledbTables, and isBot() and noTrack
 
-function callback($class) {
-  switch($class) {
-    case "SimpleSiteClass":
-      require(__DIR__ . "/../../includes/$class.php");
-      break;
-    default:
-      $class = preg_replace("~Simple~", "", $class);
-      require(__DIR__ . "/../../includes/database-engines/$class.class.php");
-      break;
-  }
-}
-
-if(spl_autoload_register("callback") === false) exit("Can't Autoload");
-
-SimpleErrorClass::setDevelopment(true);
-
-require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
-
-$_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
+$_site = require_once("special_autoload.php");
 
 // *******************************************************************
 // Refresh this page and see if the logagent table count row changes.

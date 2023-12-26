@@ -18,25 +18,7 @@ CREATE TABLE `logagent` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3 PACK_KEYS=1;
 */
 
-function callback($class) {
-  switch($class) {
-    case "SimpleSiteClass":
-      require(__DIR__ . "/../../includes/$class.php");
-      break;
-    default:
-      $class = preg_replace("~Simple~", "", $class);
-      require(__DIR__ . "/../../includes/database-engines/$class.class.php");
-      break;
-  }
-}
-
-if(spl_autoload_register("callback") === false) exit("Can't Autoload");
-
-require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
-
-SimpleErrorClass::setDevelopment(true);
-
-$_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
+$_site = require_once("special_autoload.php");
 
 $_site->dbinfo->engine = "sqlite";
 $_site->dbinfo->database = "mysqlite.db";

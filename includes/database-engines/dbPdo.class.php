@@ -57,6 +57,7 @@ class SimpledbPdo extends PDO {
     if($engine == "sqlite") {
       parent::__construct("$engine:$database");
     } else {
+      //echo "engine=$engine, database=$database<br>";
       parent::__construct("$engine:dbname=$database; host=$host; user=$user; password=$password");
     }
     $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

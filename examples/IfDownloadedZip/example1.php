@@ -1,25 +1,7 @@
 <?php
 // This example will log into the logagent table unless noTrack is set to true in mysitemap.json
 
-function callback($class) {
-  switch($class) {
-    case "SimpleSiteClass":
-      require(__DIR__ . "/../../includes/$class.php");
-      break;
-    default:
-      $class = preg_replace("~Simple~", "", $class);
-      require(__DIR__ . "/../../includes/database-engines/$class.class.php");
-      break;
-  }
-}
-
-if(spl_autoload_register("callback") === false) exit("Can't Autoload");
-
-require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php");
-
-SimpleErrorClass::setDevelopment(true);
-
-$_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
+$_site = require_once("special_autoload.php");
 
 $S = new SimpleSiteClass($_site);
 

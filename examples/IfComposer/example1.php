@@ -1,7 +1,7 @@
 <?php
 
 $_site = require_once(getenv("SITELOADNAME"));
-
+SimpleErrorClass::setDevelopment(true);
 $S = new SimpleSiteClass($_site);
 
 // Get the info in $S
