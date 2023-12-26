@@ -34,5 +34,6 @@ $tbl
 <a href="example4.php">Example4</a><br>
 <a href="example5.php">Example5</a><br>
 <a href="example6.php">Example6</a><br>
+<a href="sqlite-example.php">Sqlite Example</a><br>
 <a href="../phpinfo.php">PHPINFO</a>
 EOF;
