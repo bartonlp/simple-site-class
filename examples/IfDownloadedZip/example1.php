@@ -28,7 +28,7 @@ $S = new SimpleSiteClass($_site);
 $CLASS = print_r($S, true);
 
 $S->title = "Example 1"; // The <title>
-$S->banner = "<h1>Example One</h1>"; // This is the banner.
+$S->banner = "<h1>Example One</h1><p>Using engine=".$S->dbinfo->engine.", database=".$S->dbinfo->database."</p>"; // This is the banner.
 $S->defaultCss = "../css/style.css";// Add some css.
 $S->css =<<<EOF
 pre { font-size: 8px; }

@@ -35,7 +35,7 @@ $T = new SimpledbTables($S);
 
 // Pass some info to getPageTopBottom method
 $S->title = "Example 5"; // Goes in the <title></title>
-$S->banner = "<h1>Example Five</h1>"; // becomes the <header> section
+$S->banner = "<h1>Example Five</h1><p>Using engine=".$S->dbinfo->engine.", database=".$S->dbinfo->database."</p>";
 $S->defaultCss = "../css/style.css";
 // Add some local css to but a border and padding on the table 
 $S->css = <<<EOF
@@ -50,10 +50,10 @@ $bot = ($S->isBot($S->agent)) ? "Yes" : "No";
 [$top, $footer] = $S->getPageTopBottom();
 
 $sql = "create table if not exists $S->masterdb.test (`name` varchar(20), `date` datetime, `lasttime` datetime)";
-$S->query($sql);
+$S->sql($sql);
 for($i=0; $i<5; $i++) {
   $name = "A-name$i";
-  $S->query("insert into $S->masterdb.test (name, date, lasttime) values('$name', now(), now())");
+  $S->sql("insert into $S->masterdb.test (name, date, lasttime) values('$name', now(), now())");
 }
 
 $sql = "select * from $S->masterdb.test order by lasttime";
@@ -64,9 +64,9 @@ $sql = "select * from $S->masterdb.test order by lasttime";
 $T = new SimpledbTables($S);
 $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
-$S->query("drop table $S->masterdb.test");
+$S->sql("drop table $S->masterdb.test");
 
-$S->query("select count from $S->masterdb.logagent where site='Examples' and ip='$S->ip' and agent='$S->agent' order by lasttime");
+$S->sql("select count from $S->masterdb.logagent where site='Examples' and ip='$S->ip' and agent='$S->agent' order by lasttime");
 $count = $S->fetchrow('num')[0];
 
 echo <<<EOF

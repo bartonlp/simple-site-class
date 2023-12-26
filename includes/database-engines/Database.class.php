@@ -163,11 +163,34 @@ class SimpleDatabase extends SimpledbPdo {
     // site, ip and agent(256) are the primary key. Note, agent is a text field so we look at the
     // first 256 characters here (I don't think this will make any difference).
 
-    $sql = "insert into $this->masterdb.logagent (site, ip, agent, count, created, lasttime) " .
-           "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now()) ".
-           "on duplicate key update count=count+1, lasttime=now()";
+    if($this->dbinfo->engine == "sqlite") {
+      $this->sql("create table if not exists logagent (`site` varchar(25) NOT NULL DEFAULT '',".
+                 "`ip` varchar(40) NOT NULL DEFAULT '',".
+                 "`agent` varchar(254) NOT NULL,".
+                 "`finger` varchar(50) DEFAULT NULL,".
+                 "`count` int DEFAULT NULL,".
+                 "`created` datetime DEFAULT NULL,".
+                 "`lasttime` datetime DEFAULT NULL,".
+                 "PRIMARY KEY (`site`,`ip`,`agent`))");
 
-    $this->sql($sql);
+      $sql = "insert into logagent (site, ip, agent, count, created, lasttime) " .
+             "values('$this->siteName', '$this->ip', '$this->agent', '1', datetime('now'), datetime('now'))";
+      try {
+        $this->sql($sql);
+      } catch(PDOException $e) {
+        if($e->getCode() == 23000) { // duplicate key
+          $this->sql("update logagent set count=count+1, lasttime=datetime('now')");
+        } else {
+          throw new PDOException($e);
+        }
+      }
+    } else {
+      $sql = "insert into $this->masterdb.logagent (site, ip, agent, count, created, lasttime) " .
+             "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now()) ".
+             "on duplicate key update count=count+1, lasttime=now()";
+
+      $this->sql($sql);
+    }
   }
 
   // ************

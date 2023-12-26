@@ -10,5 +10,3 @@ Header set Access-Control-Expose-Headers: Content-Length
 # Set the environment variable for the siteloader. 
 SetEnv SITELOADNAME /var/www/vendor/bartonlp/simple-site-class/includes/siteload.php
 setEnv SITECLASS_DIR /var/www/vendor/bartonlp/simple-site-class/includes
-
-

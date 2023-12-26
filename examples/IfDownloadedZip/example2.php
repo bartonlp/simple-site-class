@@ -25,18 +25,21 @@ SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
-$S = new SimpleDatabase($_site);
-
 // Get the information from the mysitemap.json in the directory above this one.
 
 $SITE = print_r($_site, true);
+
+$eng = $_site->dbinfo->engine = "sqlite";
+$dat = $_site->dbinfo->database = "mysqlite.db";
+
+$S = new SimpleDatabase($_site);
 
 // Get the info in $S
 
 $CLASS = print_r($S, true);
 
 echo <<<EOF
-<h1>This uses the SimpleDatabase class</h1>
+<h1>This uses the SimpleDatabase class</h1><p>Using engine=$eng, database=$dat</p>
 <p>Because it does not use SimpleSiteClass it can't use \$top or \$footer.</p>
 <hr>
 <pre>This is the value of the data in mysitemap.json. \$_site: $SITE</pre>

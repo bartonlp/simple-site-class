@@ -20,16 +20,16 @@ require(__DIR__ . "/../../includes/database-engines/simple-helper-functions.php"
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
-$S = new SimpledbMysqli($_site);
+$S = new SimpledbPdo($_site);
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.
 
 $sql = "create table if not exists barton.test (`name` varchar(20), `date` datetime, `lasttime` datetime)";
-$S->query($sql);
+$S->sql($sql);
 for($i=0; $i<5; $i++) {
   $name = "A-name$i";
-  $S->query("insert into barton.test (name, date, lasttime) values('$name', now(), now())");
+  $S->sql("insert into barton.test (name, date, lasttime) values('$name', now(), now())");
 }
 $sql = "select * from barton.test order by lasttime";
 
@@ -39,12 +39,17 @@ $sql = "select * from barton.test order by lasttime";
 $T = new SimpledbTables($S);
 $tbl = $T->maketable($sql, ['attr'=>['id'=>'table1', 'border'=>'1']])[0];
 
-$S->query("drop table barton.test");
+$S->sql("drop table barton.test");
+
+$eng = $S->dbinfo->engine;
+$dat = $S->dbinfo->database;
 
 echo <<<EOF
+<h1>Example6</h1>
+<p>Using engine=$eng, database=$dat</p>
+<p>We are using the SimpledbPod and SimpledbTables class. We can't have \$top or \$footer.
+Also, isBot() and many more things are not in the SimpledbPdo class.</p>
 <p>Here are some entries from the 'test' table.</p>
-<p>We are using the SimpledbMysqli and SimpledbTables class. We can't have \$top or \$footer.
-Also, isBot() and many more things are not in the SimpledbMysqli class.</p>
 $tbl
 <hr>
 <a href="example1.php">Example1</a><br>

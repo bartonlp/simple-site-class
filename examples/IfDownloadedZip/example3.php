@@ -38,17 +38,20 @@ SimpleErrorClass::setDevelopment(true);
 
 $_site = json_decode(stripComments(file_get_contents("./mysitemap.json")));
 
+$_site->dbinfo->engine = "sqlite";
+$_site->dbinfo->database = "mysqlite.db";
+
 $S = new SimpleSiteClass($_site);
 
 $S->title = "Example 3"; // The <title>
-$S->banner = "<h1>Example Three</h1>"; // This is the banner.
+$S->banner = "<h1>Example Three</h1><p>Using engine=".$S->dbinfo->engine.", and database=".$S->dbinfo->database."</p>"; // This is the banner.
 $S->defaultCss = "../css/style.css";
 
 // There is more information about the mysql functions at https://bartonlp.github.io/site-class/ or
 // in the docs directory.
 
-$sql = "select site, ip, agent, finger, count, created, lasttime from $S->masterdb.logagent where lasttime>=current_date() and site='Examples'";
-$S->query($sql);
+$sql = "select site, ip, agent, finger, count, created, lasttime from logagent where lasttime>=datetime('now') and site='Examples'";
+$S->sql($sql);
 while([$site, $ip, $agent, $finger, $count, $created, $lasttime] = $S->fetchrow('num')) {
   $rows .= "<tr><td>$site</td><td>$ip</td><td>$agent</td><td>$finger</td><td>$count</td><td>$created</td><td>$lasttime</td></tr>";
 }
