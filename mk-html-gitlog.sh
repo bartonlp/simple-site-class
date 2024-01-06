@@ -4,7 +4,7 @@
 
 # Make .html files from .md files
 pagetitle="Main Readme file";
-/usr/bin/pandoc -Vpagetitle="$pagetitle" --css=docs/stylesheets/pandoc.css --standalone -f gfm -t html5 README.md -o README.html
+/usr/bin/pandoc -Vpagetitle="$pagetitle" --css=docs/stylesheets/pandoc.css --standalone -f gfm -t html5 README.md -o index.html
 
 # now move into the docs directory and do those html files
 
