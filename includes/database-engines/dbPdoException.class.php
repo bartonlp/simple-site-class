@@ -6,7 +6,7 @@
  * Extends Exception
  */
 
-define("SQLEXCEPTION_CLASS_VERSION", "4.0.0exception"); // BLP 2023-06-23 - 
+define("SQLEXCEPTION_CLASS_VERSION", "4.0.1exception-pdo");  
 
 class SimpleSqlException extends Exception {
   /**
@@ -40,7 +40,7 @@ class SimpleSqlException extends Exception {
   /**
    * SqlError
    * Private
-   * @param string $msg error message (mysql_error($db))
+   * @param string $msg error message
    * @param object $self is the $this where the error occured
    * @return array([html error text], [error number]);
    */
