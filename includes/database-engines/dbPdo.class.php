@@ -11,7 +11,7 @@
  * @license http://opensource.org/licenses/gpl-3.0.html GPL Version 3
  */
 
-define("PDO_CLASS_VERSION", "1.0.0pdo"); 
+define("PDO_CLASS_VERSION", "1.0.1pdo"); 
 
 /**
  * @package PDO Database
@@ -321,8 +321,8 @@ class SimpledbPdo extends PDO {
 
     // If this is a Exception then the formating etc. was done by the class
 
-    if($from != "PDOException") {
-      // NOT PDOException
+    if($from != "SqlException") {
+      // NOT SqlException
 
       // Get Trace information
 
@@ -434,7 +434,7 @@ EOF;
       curl_setopt_array($ch, $options);
 
       $result = curl_exec($ch);
-      error_log("dbPdo.class.php, PDOException: Send To ME (".$s->EMAILADDRESS."). RESULT: $result"); // This should stay!!!
+      error_log("dbPdo.class.php, SqlException: Send To ME (".$s->EMAILADDRESS."). RESULT: $result"); // This should stay!!!
     }
 
     // Log the raw error info.

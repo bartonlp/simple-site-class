@@ -1,7 +1,7 @@
 <?php
 /* Well tested and maintained */
 
-define("DATABASE_CLASS_VERSION", "1.0.1database-pdo");
+define("DATABASE_CLASS_VERSION", "1.0.2database-pdo"); // BLP 2024-01-14 - Change PdoException to SqlException
 require_once(__DIR__ . "/../defines.php"); // This has the constants for TRACKER, BOTS, BOTS2, and BEACON
 
 /**
@@ -178,11 +178,11 @@ class SimpleDatabase extends SimpledbPdo {
              "values('$this->siteName', '$this->ip', '$this->agent', '1', datetime('now'), datetime('now'))";
       try {
         $this->sql($sql);
-      } catch(PDOException $e) {
+      } catch(SqlException $e) {
         if($e->getCode() == 23000) { // duplicate key
-          $this->sql("update logagent set count=count+1, lasttime=datetime('now')");
+          $this->sql("update logagent set count=count+1, lasttime=datetime('now') where site='$this->siteName' and ip='$this->ip' and agent='$this->agent'");
         } else {
-          throw new PDOException($e);
+          throw new SqlException($e);
         }
       }
     } else {
