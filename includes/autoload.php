@@ -26,7 +26,7 @@ define("SITELOAD_VERSION", "1.1.2autoload-pdo"); // BLP 2024-01-14 - fix HTML to
 define("SITECLASS_DIR", __DIR__);
 
 if($_SERVER['HTTP_HOST'] == "bartonphillips.org") {
-  if(file_exists("/var/www/bartonphillips.org:8000") $port = ":8000";
+  if(file_exists("/var/www/bartonphillips.org:8000")) $port = ":8000";
   return json_decode(stripComments(file_get_contents("https://bartonphillips.org$port/mysitemap.json")));
 } else {
   return json_decode(stripComments(file_get_contents(__DIR__ . "/mysitemap.json")));
