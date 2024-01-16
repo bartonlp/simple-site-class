@@ -178,11 +178,12 @@ class SimpleDatabase extends SimpledbPdo {
              "values('$this->siteName', '$this->ip', '$this->agent', '1', datetime('now'), datetime('now'))";
       try {
         $this->sql($sql);
-      } catch(SqlException $e) {
+      } catch(Exception $e) {
         if($e->getCode() == 23000) { // duplicate key
           $this->sql("update logagent set count=count+1, lasttime=datetime('now') where site='$this->siteName' and ip='$this->ip' and agent='$this->agent'");
         } else {
-          throw new SqlException($e);
+          //echo "Database code1: {$e->getCode()}<br>";
+          throw new Exception($e);
         }
       }
     } else {

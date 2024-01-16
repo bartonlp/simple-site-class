@@ -3,8 +3,8 @@
 /**
  * dbPdo Class
  *
- * Wrapper around MySqli Database Class. 
- * @package dbMysqli
+ * Wrapper around PDO Database Class. 
+ * @package dbPod
  * @author Barton Phillips <barton@bartonphillips.com>
  * @link http://www.bartonphillips.com
  * @copyright Copyright (c) 2010, Barton Phillips
@@ -67,7 +67,7 @@ class SimpledbPdo extends PDO {
 
   /*
    * getVersion.
-   * @return the version of the mysql class.
+   * @return the version of the Pdo class.
    */
   
   public static function getVersion() {
@@ -111,7 +111,11 @@ class SimpledbPdo extends PDO {
     //echo "m=$m<br>";
 
     if($m == 'insert' || $m == 'delete' || $m == 'update') {
-      $numrows = $this->exec($query);
+      try {
+        $numrows = $this->exec($query);
+      } catch(Exception $e) {
+        throw $e;
+      }
       if($numrows === false) {
         throw new Exception($query);
       }
@@ -141,10 +145,10 @@ class SimpledbPdo extends PDO {
   
   /**
    * sqlPrepare()
-   * mysqli::prepare()
+   * PDO::prepare()
    * used as follows:
    * 1) $username="bob"; $query = "select one, two from test where name=?";
-   * 2) $stm = mysqli::prepare($query);
+   * 2) $stm = PDO::prepare($query);
    * 3) $stm->bind_param("s", $username);
    * 4) $stm->execute();
    * 5) $stm->bind_result($one, $two);
@@ -321,7 +325,7 @@ class SimpledbPdo extends PDO {
 
     // If this is a Exception then the formating etc. was done by the class
 
-    if($from != "SqlException") {
+    if($from != "SimpleSqlException") {
       // NOT SqlException
 
       // Get Trace information
