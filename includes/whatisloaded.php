@@ -5,7 +5,7 @@
 
 namespace bartonlp\whatisloaded;
 
-define("WHATISLOADED_VERSION", "1.0.0whatis-mysqli");
+define("WHATISLOADED_VERSION", "1.0.1whatis-pdo");
 
 (function() {
   class WhatIsLoaded {
