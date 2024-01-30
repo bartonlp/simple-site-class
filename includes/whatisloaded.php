@@ -5,7 +5,7 @@
 
 namespace bartonlp\whatisloaded;
 
-define("WHATISLOADED_VERSION", "1.0.0whatis-mysqli");
+define("WHATISLOADED_VERSION", "1.0.1whatis-pdo");
 
 (function() {
   class WhatIsLoaded {
@@ -27,7 +27,7 @@ define("WHATISLOADED_VERSION", "1.0.0whatis-mysqli");
       //$this->site = require("/var/www/simple-site-class/includes/autoload.php"); // USE site-class for
       //TESTING!
       
-      $this->siteClass = \SiteClass::getVersion();
+      $this->siteClass = \SimpleSiteClass::getVersion();
       $this->database = \Database::getVersion();
       $this->dbPdo = \dbPdo::getVersion();
       $this->helper = HELPER_FUNCTION_VERSION;
@@ -43,24 +43,25 @@ define("WHATISLOADED_VERSION", "1.0.0whatis-mysqli");
 <table id='whatIsLoaded' border='1'>
 <tbody>
 <tr><td>siteload.php</td><td>$this->site</td></tr>
-<tr><td>SiteClass.class.php</td><td>$this->siteClass</td></tr>
-<tr><td>Database.class.php</td><td>$this->database</td></tr>
-<tr><td>dbPdo.class.php</td><td>$this->dbPdo</td></tr>
-<tr><td>dbTables.class.php</td><td>$this->dbTables</td></tr>
-<tr><td>ErrorClass.class.php</td><td>$this->ErrorClass</td></tr>
-<tr><td>SqlException.class.php</td><td>$this->SqlException</td></tr>
+<tr><td>SimpleSiteClass.class.php</td><td>$this->siteClass</td></tr>
+<tr><td>SimpleDatabase.class.php</td><td>$this->database</td></tr>
+<tr><td>SimpledbPdo.class.php</td><td>$this->dbPdo</td></tr>
+<tr><td>SimpledbTables.class.php</td><td>$this->dbTables</td></tr>
+<tr><td>SimpleErrorClass.class.php</td><td>$this->ErrorClass</td></tr>
+<tr><td>SimpleSqlException.class.php</td><td>$this->SqlException</td></tr>
 <tr><td>whatisloaded.class.php</td><td>$whatis</td></tr>
 <tr><td>simple-helper-functions.php</td><td>$this->helper</td></tr>
 </tbody>
 </table>
 EOF;
 
-      return [$tbl, "siteload.php"=>$this->site, "SiteClass.class.php"=>$this->siteClass,
-      "Database.class.php"=>$this->database,
-      "dbPdo.class.php"=>$this->dbPdo,
-      "dbTables.class.php"=>$this->dbTables, "ErrorClass.class.php"=>$this->ErrorClass,
-      "SqlException.class.php"=>$this->SqlException, 
+      return [$tbl, "siteload.php"=>$this->site, "SimpleSiteClass.class.php"=>$this->siteClass,
+      "SimpleDatabase.class.php"=>$this->database,
+      "SimpledbPdo.class.php"=>$this->dbPdo,
+      "SimpledbTables.class.php"=>$this->dbTables, "SimpleErrorClass.class.php"=>$this->ErrorClass,
+      "SimpleSqlException.class.php"=>$this->SqlException, 
       "whatisloaded.class.php"=>$whatis,
+      ];
     }
 
     public static function getVersion() {
