@@ -8,9 +8,12 @@
 
 namespace bartonlp\siteload;
 
-define("SITELOAD_VERSION", "1.0.0siteload"); // BLP 2023-08-11 - add static $mysitemap
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_NOTICE);
+
+define("SITELOAD_VERSION", "1.0.2siteload-pdo"); // BLP 2024-01-19 - load simple-helper-functions.php seperatly
 define("SITECLASS_DIR", __DIR__);
-require_once(__DIR__ ."/../../../autoload.php");
+require_once("/var/www/vendor/autoload.php");
+require_once("/var/www/vendor/bartonlp/simple-site-class/includes/database-engines/simple-helper-functions.php");
 
 // If we only want the version info $__VERSION is set. We do this in whatisloaded.class.php.
 // It can also be done to get the versions of beacon.php and tracker.php.
@@ -25,8 +28,6 @@ if(!class_exists("getinfo")) {
 
     public function __construct() {
       //error_log("siteload simple-site-class");
-
-      $old = error_reporting(E_ALL & ~(E_NOTICE | E_WARNING | E_STRICT));
 
       // Now check to see if we have a DOCUMENT_ROOT or VIRTUALHOST_DOCUMENT_ROOT.
       // If we DON't we will use PWD which should be and if SCRIPT_FILENAME is not dot (.)
@@ -96,8 +97,6 @@ if(!class_exists("getinfo")) {
           \ErrorClass::setErrlast(true);
         }
       }
-
-      error_reporting($old);
     }
 
     // getVersion

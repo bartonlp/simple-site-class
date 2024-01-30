@@ -55,13 +55,12 @@ define("WHATISLOADED_VERSION", "1.0.1whatis-pdo");
 </table>
 EOF;
 
-      return [$tbl, "siteload.php"=>$this->site, "SimpleSiteClass.class.php"=>$this->siteClass,
-      "SimpleDatabase.class.php"=>$this->database,
-      "SimpledbPdo.class.php"=>$this->dbPdo,
-      "SimpledbTables.class.php"=>$this->dbTables, "SimpleErrorClass.class.php"=>$this->ErrorClass,
-      "SimpleSqlException.class.php"=>$this->SqlException, 
-      "whatisloaded.class.php"=>$whatis,
-      ];
+      return [$tbl, "siteload.php"=>$this->site, "SiteClass.class.php"=>$this->siteClass,
+      "Database.class.php"=>$this->database,
+      "dbPdo.class.php"=>$this->dbPdo,
+      "dbTables.class.php"=>$this->dbTables, "ErrorClass.class.php"=>$this->ErrorClass,
+      "SqlException.class.php"=>$this->SqlException, 
+      "whatisloaded.class.php"=>$whatis,];
     }
 
     public static function getVersion() {
