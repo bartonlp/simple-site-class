@@ -57,7 +57,6 @@ class SimpledbPdo extends PDO {
     if($engine == "sqlite") {
       parent::__construct("$engine:$database");
     } else {
-      //echo "engine=$engine, database=$database<br>";
       parent::__construct("$engine:dbname=$database; host=$host; user=$user; password=$password");
     }
     $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -114,6 +113,7 @@ class SimpledbPdo extends PDO {
       try {
         $numrows = $this->exec($query);
       } catch(Exception $e) {
+        //error_log("dbPdo.class.php: $query\n\$e=$e");
         throw $e;
       }
       if($numrows === false) {
@@ -130,7 +130,7 @@ class SimpledbPdo extends PDO {
 
       $this->result = $result;
 
-      if($this->dbinfo->engine == 'mysql') {
+      if($this->dbinfo->engine == 'mysql' || $this->dbinfo->engine == 'pgsql') {
         $numrows = $result->rowCount();
       } elseif($m == 'select') {
         $last = self::$lastQuery;

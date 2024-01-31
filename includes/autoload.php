@@ -26,6 +26,12 @@ date_default_timezone_set('America/New_York'); // Done here and in dbPdo.class.p
 define("SITELOAD_VERSION", "1.1.2autoload-pdo"); // BLP 2024-01-14 - fix HTML to HTTP_HOST.
 define("SITECLASS_DIR", __DIR__);
 
+// BLP 2024-01-31 -  If this is /var/www/html just return and get the info from mysitemap.json.
+
+if($_SERVER['HTTP_HOST'] == "195.252.232.86") return; 
+
+// BLP 2024-01-31 - for my domain names on HP or rpi.
+
 if($_SERVER['HTTP_HOST'] == "bartonphillips.org") {
   if(file_exists("/var/www/bartonphillips.org:8000")) $port = ":8000";
   return json_decode(stripComments(file_get_contents("https://bartonphillips.org$port/mysitemap.json")));

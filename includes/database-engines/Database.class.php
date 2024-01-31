@@ -164,34 +164,44 @@ class SimpleDatabase extends SimpledbPdo {
     // site, ip and agent(256) are the primary key. Note, agent is a text field so we look at the
     // first 256 characters here (I don't think this will make any difference).
 
-    if($this->dbinfo->engine == "sqlite") {
-      $this->sql("create table if not exists logagent (`site` varchar(25) NOT NULL DEFAULT '',".
-                 "`ip` varchar(40) NOT NULL DEFAULT '',".
-                 "`agent` varchar(254) NOT NULL,".
-                 "`finger` varchar(50) DEFAULT NULL,".
-                 "`count` int DEFAULT NULL,".
-                 "`created` datetime DEFAULT NULL,".
-                 "`lasttime` datetime DEFAULT NULL,".
-                 "PRIMARY KEY (`site`,`ip`,`agent`))");
+    if($this->dbinfo->engine == "mysql") {
+       $sql = "insert into $this->masterdb.logagent (site, ip, agent, count, created, lasttime) " .
+              "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now()) ".
+              "on duplicate key update count=count+1, lasttime=now()";
 
-      $sql = "insert into logagent (site, ip, agent, count, created, lasttime) " .
-             "values('$this->siteName', '$this->ip', '$this->agent', '1', datetime('now'), datetime('now'))";
+       $this->sql($sql);
+    } else {
+      if($this->dbinfo->engine == "sqlite") {
+        $this->sql("create table if not exists logagent (`site` varchar(25) NOT NULL DEFAULT '',".
+                   "`ip` varchar(40) NOT NULL DEFAULT '',".
+                   "`agent` varchar(254) NOT NULL,".
+                   "`finger` varchar(50) DEFAULT NULL,".
+                   "`count` int DEFAULT NULL,".
+                   "`created` datetime DEFAULT NULL,".
+                   "`lasttime` datetime DEFAULT NULL,".
+                   "PRIMARY KEY (`site`,`ip`,`agent`))");
+
+        $sql = "insert into logagent (site, ip, agent, count, created, lasttime) " .
+               "values('$this->siteName', '$this->ip', '$this->agent', '1', datetime('now'), datetime('now'))";
+      } else { // pgsql
+        $sql = "insert into logagent (site, ip, agent, count, created, lasttime) " .
+               "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now())";
+      }
       try {
         $this->sql($sql);
       } catch(Exception $e) {
-        if($e->getCode() == 23000) { // duplicate key
-          $this->sql("update logagent set count=count+1, lasttime=datetime('now') where site='$this->siteName' and ip='$this->ip' and agent='$this->agent'");
+        if($e->getCode() == 23000 || $e->getCode() == 23505) { // duplicate key
+          if($this->dbinfo->engine == "sqlite") {
+            $d = "datetime('now')";
+          } else { // pgsql
+            $d = "now()";
+          }
+          $this->sql("update logagent set count=count+1, lasttime=$d where site='$this->siteName' and ip='$this->ip' and agent='$this->agent'");
         } else {
           //echo "Database code1: {$e->getCode()}<br>";
           throw new Exception($e);
         }
       }
-    } else {
-      $sql = "insert into $this->masterdb.logagent (site, ip, agent, count, created, lasttime) " .
-             "values('$this->siteName', '$this->ip', '$this->agent', '1', now(), now()) ".
-             "on duplicate key update count=count+1, lasttime=now()";
-
-      $this->sql($sql);
     }
   }
 
