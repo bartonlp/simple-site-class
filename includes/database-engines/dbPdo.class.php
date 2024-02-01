@@ -11,7 +11,7 @@
  * @license http://opensource.org/licenses/gpl-3.0.html GPL Version 3
  */
 
-define("PDO_CLASS_VERSION", "1.0.1pdo"); 
+define("PDO_CLASS_VERSION", "1.0.2pdo"); // Added support for pgsql.
 
 /**
  * @package PDO Database
