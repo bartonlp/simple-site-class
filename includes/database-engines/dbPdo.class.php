@@ -10,8 +10,9 @@
  * @copyright Copyright (c) 2010, Barton Phillips
  * @license http://opensource.org/licenses/gpl-3.0.html GPL Version 3
  */
+// BLP 2024-04-20 - set mysql time zone.
 
-define("PDO_CLASS_VERSION", "1.0.2pdo"); // Added support for pgsql.
+define("PDO_CLASS_VERSION", "1.0.3pdo"); // Added support for pgsql.
 
 /**
  * @package PDO Database
@@ -61,6 +62,8 @@ class SimpledbPdo extends PDO {
     }
     $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $this->sql("set time_zone='US/Eastern'"); //BLP 2024-04-20 - set mysql time zone
+    
     $this->database = $database;
   } // End of constructor.
 
@@ -438,7 +441,7 @@ EOF;
       curl_setopt_array($ch, $options);
 
       $result = curl_exec($ch);
-      error_log("dbPdo.class.php, SqlException: Send To ME (".$s->EMAILADDRESS."). RESULT: $result"); // This should stay!!!
+      error_log("dbPdo.class.php, Exception: Send To ME (".$s->EMAILADDRESS."). RESULT: $result"); // This should stay!!!
     }
 
     // Log the raw error info.
