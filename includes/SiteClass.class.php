@@ -3,7 +3,7 @@
 // BLP 2023-10-02 - Note that the constructor calls the Database constructor which in turn call the
 // dbMysqli constructor which does all of the heavy lifting.
 
-define("SITE_CLASS_VERSION", "1.0.1simple-pdo"); 
+define("SITE_CLASS_VERSION", "1.0.2simple-pdo"); 
 
 // One class for all my sites
 // This version has been generalized to not have anything about my sites in it!
@@ -136,7 +136,7 @@ class SimpleSiteClass extends SimpleDatabase {
 
     $dtype = $this->doctype; // note that $this->doctype could also be from mysitemap.json see the constructor.
 
-    $h->base = $this->base ? "<base src='$this->base'>" : null;
+    $h->base = $this->base ? "<base href='$this->base'>" : null;
 
     // All meta tags
 
