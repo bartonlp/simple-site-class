@@ -360,7 +360,9 @@ class SimpledbPdo extends PDO {
 
       $email->addContent("text/html", $contents);
 
-      $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
+      $apiKey = require "/var/www/PASSWORDS/sendgrid-api-key";
+  
+      $sendgrid = new \SendGrid($apiKey);
 
       $response = $sendgrid->send($email);
 
