@@ -57,15 +57,16 @@ class SimpledbPdo extends PDO {
     
     $password = $password ?? require("/home/barton/database-password");
 
+    // BLP 2024-11-07 - Note, Sqlite3 does not support set time_zone. All times are UTC.
+    
     if($engine == "sqlite") {
       parent::__construct("$engine:$database");
     } else {
       parent::__construct("$engine:dbname=$database; host=$host; user=$user; password=$password");
+      $this->sql("set time_zone='America/New_York'"); 
     }
     $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $this->sql("set time_zone='America/New_York'"); 
-    
     $this->database = $database;
   } // End of constructor.
 
