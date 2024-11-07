@@ -1,7 +1,7 @@
 <?php
 /* MAINTAINED and WELL TESTED */
 
-define("ERROR_CLASS_VERSION", "4.0.1error-pdo");
+define("ERROR_CLASS_VERSION", "4.0.2simple-error-pdo"); // BLP 2024-11-07 - Add simple to Version
 
 // Error class.
 

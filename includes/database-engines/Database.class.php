@@ -1,7 +1,7 @@
 <?php
 /* Well tested and maintained */
 
-define("DATABASE_CLASS_VERSION", "1.0.3database-pdo"); // Added support for pgsql
+define("DATABASE_CLASS_VERSION", "1.0.4simple-database-pdo"); // BLP 2024-11-07 - add simple to Version and in constructor pass $s to SimpledbPod.
 require_once(__DIR__ . "/../defines.php"); // This has the constants for TRACKER, BOTS, BOTS2, and BEACON
 
 /**
@@ -23,24 +23,18 @@ class SimpleDatabase extends SimpledbPdo {
     $s->self = htmlentities($_SERVER['PHP_SELF']);
     $s->requestUri = $_SERVER['REQUEST_URI'];
 
-    // Put all of the $s values into $this.
-    
-    foreach($s as $k=>$v) {
-      $this->$k = $v;
-    }
-    
     // If no 'nodb' or 'dbinfo' (no database) in mysitemap.json set everything so the database is not loaded.
     
-    if($this->nodb === true || is_null($this->dbinfo)) {
-      $this->nodb = true;    // Maybe $this->dbinfo was null
-      $this->dbinfo = null;  // Maybe nodb was set
+    if($s->nodb === true || is_null($s->dbinfo)) {
+      $s->nodb = true;    // Maybe $this->dbinfo was null
+      $s->dbinfo = null;  // Maybe nodb was set
       return; // If we have NO DATABASE just return.
     }
 
     // Do the parent SimpledbMysqli constructor
     // Now we can do mysql functions.
-    
-    parent::__construct($this);
+
+    parent::__construct($s);
 
     // Setting noTrack needs to be set before the class in instantiated. It can be done via mysitemap.json or
     // by setting $_site->noTrack. If noTrack is not true we log.

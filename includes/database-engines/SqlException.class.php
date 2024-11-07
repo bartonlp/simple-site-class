@@ -6,7 +6,7 @@
  * Extends Exception
  */
 
-define("SQLEXCEPTION_CLASS_VERSION", "4.0.2exception-pdo"); 
+define("SQLEXCEPTION_CLASS_VERSION", "4.0.3simple-exception-pdo"); // BLP 2024-11-07 - Add simple to Version
 
 class SimpleSqlException extends Exception {
   /**

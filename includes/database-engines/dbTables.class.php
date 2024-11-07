@@ -2,7 +2,7 @@
 /* WELL TESTED and MAINTAINED */
 // BLP 2023-01-31 - added $db->dbTables and made $db a reference.
 
-define("DBTABLE_CLASS_VERSION", "1.0.1dbTables-pdo"); // BLP 2023-01-31 - 
+define("DBTABLE_CLASS_VERSION", "1.0.1simple-dbTables-pdo"); // BLP 2024-11-07 - Add simple to Version
 
 // Make database tables given either a SiteClass or Database class object.
 
