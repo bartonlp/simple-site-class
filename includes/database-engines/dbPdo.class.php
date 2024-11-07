@@ -12,6 +12,8 @@
  */
 // BLP 2024-04-20 - set mysql time zone.
 
+use SendGrid\Mail\Mail; // Use SendGrid for email
+
 define("PDO_CLASS_VERSION", "1.0.4simple-pdo"); // BLP 2024-11-07 - add simple to version and use America/New_York in time zone.
 
 /**
