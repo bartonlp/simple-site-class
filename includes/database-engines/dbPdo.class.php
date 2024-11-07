@@ -12,7 +12,7 @@
  */
 // BLP 2024-04-20 - set mysql time zone.
 
-define("PDO_CLASS_VERSION", "1.0.3pdo"); // Added support for pgsql.
+define("PDO_CLASS_VERSION", "1.0.4simple-pdo"); // BLP 2024-11-07 - add simple to version and use America/New_York in time zone.
 
 /**
  * @package PDO Database
@@ -62,7 +62,7 @@ class SimpledbPdo extends PDO {
     }
     $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $this->sql("set time_zone='US/Eastern'"); //BLP 2024-04-20 - set mysql time zone
+    $this->sql("set time_zone='America/New_York'"); 
     
     $this->database = $database;
   } // End of constructor.

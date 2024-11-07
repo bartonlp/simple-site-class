@@ -2,7 +2,7 @@
 /* HELPER FUNCTIONS. Well tested and maintained */
 // BLP 2023-10-04 - added varexport() functions.
 
-define("HELPER_FUNCTION_VERSION", "1.1.2helper-pdo");
+define("HELPER_FUNCTION_VERSION", "1.1.3simple-helper-pdo"); // BLP 2024-11-07 - Add simple to Version
 
 /**
  * Helper Functions
