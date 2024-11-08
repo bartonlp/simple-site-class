@@ -1,8 +1,9 @@
 <?php
 // Defines for tables.
 // BLP 2023-10-20 - removed, define("BOTAS_TABLE", "table");
-
-define("DEFINES_VERSION", "1.1.0defines"); // BLP 2023-08-08 - 
+// BLP 2024-11-07 - Most of these defines are not used by SimpleSiteClass. DO_SERVER and MY_IP are
+// used.
+define("DEFINES_VERSION", "1.1.1defines"); // BLP 2024-11-07 - update DO_SERVER add MY_IP
 
 // Bots and bots2 Tables.
 // These are all done via SiteClass trackbots() which does both the bots and bots2 tables.
@@ -52,4 +53,6 @@ define("BOTAS_COUNTED", "counted");
 define("BOTAS_NOAGENT", "no-agent"); // BLP 2023-10-27 - added
 
 // Define the DigitalOcean Server
-define("DO_SERVER", "157.245.129.4");
+define("DO_SERVER", "192.241.132.229");
+// Define MY_IP
+define("MY_IP", "195.252.232.86");

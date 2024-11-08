@@ -14,7 +14,8 @@
 
 use SendGrid\Mail\Mail; // Use SendGrid for email
 
-define("PDO_CLASS_VERSION", "1.0.4simple-pdo"); // BLP 2024-11-07 - add simple to version and use America/New_York in time zone.
+define("PDO_CLASS_VERSION", "1.0.6simple-pdo"); // BLP 2024-11-07 - add myip, move defines.php from Database and $s.
+require_once(__DIR__ . "/../defines.php"); // This has the constants for TRACKER, BOTS, BOTS2, and BEACON
 
 /**
  * @package PDO Database
@@ -24,6 +25,7 @@ define("PDO_CLASS_VERSION", "1.0.4simple-pdo"); // BLP 2024-11-07 - add simple t
  */
 
 class SimpledbPdo extends PDO {
+  public $myIp = [MY_IP]; // BLP 2024-11-07 - meeded by some programs, get it from defines.php
   private $result; // for select etc. a result set.
   static public $lastQuery = null; // for debugging
   static public $lastNonSelectResult = null; // for insert, update etc.
@@ -34,7 +36,7 @@ class SimpledbPdo extends PDO {
    * as a side effect opens the database, that is connects the database
    */
 
-  public function __construct(object $siteInfo) {
+  public function __construct(object $s) {
     set_exception_handler("SimpledbPdo::my_exceptionhandler"); // Set up the exception handler
 
     // BLP 2021-03-06 -- New server is in New York
@@ -45,9 +47,21 @@ class SimpledbPdo extends PDO {
     
     header("Accept-CH: Sec-Ch-Ua-Platform,Sec-Ch-Ua-Platform-Version,Sec-CH-UA-Full-Version-List,Sec-CH-UA-Arch,Sec-CH-UA-Model"); 
 
+    // If we have $s items use them otherwise get the defaults
+    // BLP 2024-11-07 - setting the default was moved from Database.
+    
+    $s->ip = $_SERVER['REMOTE_ADDR'];
+
+    $s->agent = $s->agent ?? $_SERVER['HTTP_USER_AGENT'];
+    $s->agent = preg_replace("~'~", "", $s->agent); // BLP 2024-10-29 - remove appostrophies.
+
+    $s->agent = $_SERVER['HTTP_USER_AGENT']; 
+    $s->self = htmlentities($_SERVER['PHP_SELF']);
+    $s->requestUri = $_SERVER['REQUEST_URI'];
+
     // Extract the items from dbinfo. This is $host, $user and maybe $password and $port.
 
-    foreach($siteInfo as $k=>$v) {
+    foreach($s as $k=>$v) {
       $this->$k = $v;
     }
 
