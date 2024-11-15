@@ -1,7 +1,7 @@
 <?php
 /* Well tested and maintained */
 
-define("DATABASE_CLASS_VERSION", "1.0.5simple-database-pdo"); // BLP 2024-11-07 - move defines.php to dbPdo
+define("DATABASE_CLASS_VERSION", "1.0.5simple-database-pdo"); 
 
 /**
  * Database wrapper class

@@ -14,7 +14,7 @@
 
 use SendGrid\Mail\Mail; // Use SendGrid for email
 
-define("PDO_CLASS_VERSION", "1.0.6simple-pdo"); // BLP 2024-11-07 - add myip, move defines.php from Database and $s.
+define("PDO_CLASS_VERSION", "1.0.7simple-pdo"); // BLP 2024-11-15 - add isMe() and isMyip(). Add myip, move defines.php from Database and $s.
 require_once(__DIR__ . "/../defines.php"); // This has the constants for TRACKER, BOTS, BOTS2, and BEACON
 
 /**
@@ -110,7 +110,27 @@ class SimpledbPdo extends PDO {
   public function getDbError() {
     return $this->error;
   }
+
+   /**
+   * isMyIp($ip):bool
+   * Given an IP address check if this is me.
+   */
+
+  public function isMyIp(string $ip):bool {
+    if($this->isMeFalse === true) return false;
+    return (in_array($ip, $this->myIp));
+  }
   
+  /**
+   * isMe()
+   * Check if this access is from ME
+   * @return true if $this->ip == $this->myIp else false!
+   */
+
+  public function isMe():bool {
+    return $this->isMyIp($this->ip);
+  }
+
   /**
    * sql()
    * Query database table
