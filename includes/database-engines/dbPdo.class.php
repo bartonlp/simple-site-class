@@ -368,6 +368,10 @@ class SimpledbPdo extends PDO {
     $err = html_entity_decode(preg_replace("/<.*?>/", '', $error));
     $err = preg_replace("/^\s*$/", '', $err); // remove blank lines
 
+    // BLP 2024-11-15 - Get dbPdo::$lastQuery
+
+    $last = SimpledbPdo::$lastQuery;
+    
     // Callback to get the user ID if the callback exists
 
     $userId = '';
@@ -410,7 +414,7 @@ class SimpledbPdo extends PDO {
     
     // Log the raw error info.
     // This error_log should always stay in!! *****************
-    error_log("dbPdo.class.php: $from\n$err\n$userId");
+    error_log("dbPdo.class.php: $from\n$err\nlastQuery: $last\n$userId");
     // ********************************************************
 
     if(SimpleErrorClass::getDevelopment() !== true) {
