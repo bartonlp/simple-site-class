@@ -6,12 +6,13 @@
 // For example DOCUMENT_ROOT + /path/target
 // So we take this and if we do not find the files at first we do a $mysite = dirname($mysite).
 
-namespace bartonlp\siteload;
+namespace bartonlp\simple_siteload;
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_NOTICE);
 
-define("SITELOAD_VERSION", "1.0.2siteload-pdo"); // BLP 2024-01-19 - load simple-helper-functions.php seperatly
+define("SITELOAD_VERSION", "1.0.3simple-siteload-pdo"); // BLP 2024-12-05 - changed namespace to simple_autoload and version to simple-autoload-pdo
 define("SITECLASS_DIR", __DIR__);
+
 require_once("/var/www/vendor/autoload.php");
 require_once("/var/www/vendor/bartonlp/simple-site-class/includes/database-engines/simple-helper-functions.php");
 

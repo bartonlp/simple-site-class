@@ -1,11 +1,11 @@
 <?php
 // Auto load classes for SiteClass
 
-namespace bartonlp\siteload;
+namespace bartonlp\simple_autoload;
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_NOTICE);
 
-define("SITELOAD_VERSION", "1.1.4autoload-pdo"); // BLP 2024-10-30 - modify, add findmysitemap().
+define("SITELOAD_VERSION", "1.1.5simple-autoload-pdo"); // BLP 2024-12-05 - changed namespace to simple_autoload and version to simple-autoload-pdo
 define("SITECLASS_DIR", __DIR__);
 
 function getSiteloadVersion() {
@@ -14,6 +14,7 @@ function getSiteloadVersion() {
 
 function _callback($class) {
   $class = preg_replace("~^Simple~", "", $class);
+
   switch($class) {
     case "SiteClass":
       require(__DIR__."/$class.class.php");
@@ -24,9 +25,9 @@ function _callback($class) {
   }
 }
 
-if(spl_autoload_register("\bartonlp\siteload\_callback") === false) exit("Can't Autoload");
-
 require(__DIR__."/database-engines/simple-helper-functions.php");
+
+if(spl_autoload_register("\bartonlp\simple_autoload\_callback") === false) exit("Can't Autoload");
 
 \SimpleErrorClass::setDevelopment(true);
 

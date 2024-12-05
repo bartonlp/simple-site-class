@@ -4,8 +4,10 @@
 // Look at the getWhatIsInfo() method for what is returned.
 
 namespace bartonlp\whatisloaded;
+//namespace bartonlp\simple_autoload;
+namespace bartonlp\simple_siteload;
 
-define("WHATISLOADED_VERSION", "1.0.1whatis-pdo");
+define("WHATISLOADED_VERSION", "1.0.2simplewhatis-pdo");
 
 (function() {
   class WhatIsLoaded {
@@ -23,17 +25,15 @@ define("WHATISLOADED_VERSION", "1.0.1whatis-pdo");
     public function __construct() {
       $__VERSION_ONLY = true; // also used by siteload.php, tracker.php, beacon.php.
 
-      $this->site = require(getenv("SITELOADNAME"));
-      //$this->site = require("/var/www/simple-site-class/includes/autoload.php"); // USE site-class for
-      //TESTING!
-      
+      $this->site = getSiteloadVersion(); //require("/var/www/simple-site-class/includes/simple-autoload.php"); // USE site-class for
+      echo "site: $this->site<br>";      
       $this->siteClass = \SimpleSiteClass::getVersion();
-      $this->database = \Database::getVersion();
-      $this->dbPdo = \dbPdo::getVersion();
+      $this->database = \SimpleDatabase::getVersion();
+      $this->dbPdo = \SimpledbPdo::getVersion();
       $this->helper = HELPER_FUNCTION_VERSION;
-      $this->dbTables = \dbTables::getVersion();
-      $this->ErrorClass= \ErrorClass::getVersion();
-      $this->SqlException = \SqlException::getVersion();
+      $this->dbTables = \SimpledbTables::getVersion();
+      $this->ErrorClass= \SimpleErrorClass::getVersion();
+      $this->SqlException = \SimpleSqlException::getVersion();
     }
 
     public function getWhatIsInfo() {
