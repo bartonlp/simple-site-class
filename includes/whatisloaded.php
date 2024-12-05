@@ -23,9 +23,7 @@ define("WHATISLOADED_VERSION", "1.0.3simple-whatis-pdo"); // BLP 2024-12-05 - Ad
     private $SqlException;
         
     public function __construct() {
-      $__VERSION_ONLY = true; // also used by siteload.php, tracker.php, beacon.php.
-
-      $this->site = getSiteloadVersion(); //require("/var/www/simple-site-class/includes/simple-autoload.php"); // USE site-class for
+      $this->site = getSiteloadVersion(); 
       echo "site: $this->site<br>";      
       $this->siteClass = \SimpleSiteClass::getVersion();
       $this->database = \SimpleDatabase::getVersion();
