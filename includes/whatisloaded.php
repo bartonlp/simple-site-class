@@ -24,7 +24,6 @@ define("WHATISLOADED_VERSION", "1.0.3simple-whatis-pdo"); // BLP 2024-12-05 - Ad
         
     public function __construct() {
       $this->site = getSiteloadVersion(); 
-      echo "site: $this->site<br>";      
       $this->siteClass = \SimpleSiteClass::getVersion();
       $this->database = \SimpleDatabase::getVersion();
       $this->dbPdo = \SimpledbPdo::getVersion();
