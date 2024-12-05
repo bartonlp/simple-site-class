@@ -16,7 +16,7 @@ define("SITECLASS_DIR", __DIR__);
 require_once("/var/www/vendor/autoload.php");
 require_once("/var/www/vendor/bartonlp/simple-site-class/includes/database-engines/simple-helper-functions.php");
 
-BLP 2024-12-05 - Add getSiteVersion() from simple-autoload.php.
+// BLP 2024-12-05 - Add getSiteVersion() from simple-autoload.php.
    
 function getSiteloadVersion() {
   return SITELOAD_VERSION;
