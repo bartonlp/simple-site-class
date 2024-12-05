@@ -70,31 +70,31 @@ if(!class_exists("getinfo")) {
 
       if($mode = $this->_site->errorMode) {
         if($mode->development === true) { // true we are in development
-          \ErrorClass::setDevelopment(true); // Do this first because it sets NoEmailErrs to true.
+          \SimpleErrorClass::setDevelopment(true); // Do this first because it sets NoEmailErrs to true.
         }
 
         // If this is true set it if it is false unset it but if it is null don't do anything! 
 
         if($mode->noEmail === true) { // true means let there be emails
-          \ErrorClass::setNoEmail(true); 
+          \SimpleErrorClass::setNoEmail(true); 
         } elseif($mode->noEmail === false) { // only if false, a null does nothing here.
-          \ErrorClass::setNoEmail(false); 
+          \SimpleErrorClass::setNoEmail(false); 
         } 
 
         if($mode->noHtml === true) { 
-          \ErrorClass::setNoHtml(true); // NO HTML Tags
+          \SimpleErrorClass::setNoHtml(true); // NO HTML Tags
         }
 
         if($mode->noOutput === true) {
-          \ErrorClass::setNoOutput(true);
+          \SimpleErrorClass::setNoOutput(true);
         }
 
         if($mode->noBacktrace === true) {
-          \ErrorClass::setNobacktrace(true);
+          \SimpleErrorClass::setNobacktrace(true);
         }
 
         if($mode->errLast == true) {
-          \ErrorClass::setErrlast(true);
+          \SimpleErrorClass::setErrlast(true);
         }
       }
     }
