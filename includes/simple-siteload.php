@@ -10,11 +10,17 @@ namespace bartonlp\simple_siteload;
 
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_WARNING & ~E_NOTICE);
 
-define("SITELOAD_VERSION", "1.0.3simple-siteload-pdo"); // BLP 2024-12-05 - changed namespace to simple_autoload and version to simple-autoload-pdo
+define("SITELOAD_VERSION", "1.0.4simple-siteload-pdo"); // BLP 2024-12-05 - changed namespace to simple_autoload and version to simple-autoload-pdo
 define("SITECLASS_DIR", __DIR__);
 
 require_once("/var/www/vendor/autoload.php");
 require_once("/var/www/vendor/bartonlp/simple-site-class/includes/database-engines/simple-helper-functions.php");
+
+BLP 2024-12-05 - Add getSiteVersion() from simple-autoload.php.
+   
+function getSiteloadVersion() {
+  return SITELOAD_VERSION;
+}
 
 // If we only want the version info $__VERSION is set. We do this in whatisloaded.class.php.
 // It can also be done to get the versions of beacon.php and tracker.php.

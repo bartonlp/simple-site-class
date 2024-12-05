@@ -7,7 +7,7 @@ namespace bartonlp\whatisloaded;
 //namespace bartonlp\simple_autoload;
 namespace bartonlp\simple_siteload;
 
-define("WHATISLOADED_VERSION", "1.0.2simplewhatis-pdo");
+define("WHATISLOADED_VERSION", "1.0.3simple-whatis-pdo"); // BLP 2024-12-05 - Added dash (-) to simplewatis-pdo
 
 (function() {
   class WhatIsLoaded {
