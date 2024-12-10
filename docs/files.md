@@ -4,7 +4,9 @@
 
 ## The 'mysitemap.json' File
 
-The 'mysitemap.json' file is the site configuration file. 'siteload.php' loads the 'mysitemap.json' file that is in the current directory. If a 'mysitemap.json' file is not found in the current directory the parent directory is searched and this continues up until the DocuementRoot is searched and if still not found an exception is thrown.
+The 'mysitemap.json' file is the site configuration file. 'siteload.php' loads the 'mysitemap.json' file that is in the current directory. 
+If a 'mysitemap.json' file is not found in the current directory the parent directory is searched and this continues up
+ until the DocuementRoot is searched and if still not found an exception is thrown.
 
 Once a 'mysitemap.json' file is found the information in it is read in via 'file_get_contents()'. 
 The information from the 'mysitemap.json' file is converted into a PHP object and returned.
@@ -24,7 +26,7 @@ If I have multiple virtual hosts they are all off the '/var/www' directory inste
 ## How the xxxFile files look
 
 In the 'mysitemap.json' file there can be three elements that describe the location of special files. 
-These files are 1) 'headFile', 2) 'bannerFile' and 3) 'footerFile'.
+These are 1) 'headFile', 2) 'bannerFile' and 3) 'footerFile'.
 
 I put the three special file in my '/var/www/html/includes' directory (where 'html' may be one of your virtual hosts 
 and not named 'html'). 
@@ -58,7 +60,7 @@ return <<<EOF
 EOF;
 ```
 
-All of the *$h* properties are created by _SimpleSiteClass_.
+All of the *$h* and *jQuery* properties are created by _SimpleSiteClass_.
 
 These 'xxxFile' files return their contents. You can ignore using *$h* values and just have standard html in the files.
 
@@ -70,20 +72,22 @@ and the various sub-methods, but the standard things are:
 * link
 * extra
 * script
+* inlineScript
 * css
 
-As you saw in example 5 (example5.php in the 'examples' directory) I set the properties of *$S* before calling `getPageTopBottom();`.   
+I set the properties of *$S* before calling `getPageTopBottom();`.
 For example it might look like this:
 
 ```php
-$_site = require_once(getenv("SITELOADNAME"));
+$_site = require_once getenv("SITELOADNAME");
 $S = new SimpleSiteClass($_site);
 $S->title = 'my title';
 $S->desc = 'This is the description';
 $S->link = '<link rel="stylesheet" href="test.css">';
 $S->extra = '<!-- this can be anything from a meta, link, script etc -->';
 $S->h_script = '<script> var a="test"; </script>';
-$S->css = '/* some css */ #test { width: 10px; };
+$S->h_inlineScript = "var test;";
+$S->css = "/* some css */ #test { width: 10px; }";
 [$top, $footer] = $S->getPageTopBottom();
 ```
 
@@ -91,7 +95,7 @@ As these special files are PHP files you can do anything else that you need to, 
 For example, to do a query do `$this->query($sql);` not `$S->query($sql);`.   
 
 I usually call these files 'head.i.php', 'banner.i.php' and 'footer.i.php' but you can name them anything you like.   
-In the 'mysitemap.json' just add the full path to the file. For example:
+In the 'mysitemap.json' just add the relative or full path to the file. For example:
 
 ```json
 /* This is a comment. This file allows comments, a true JSON file does not */
@@ -108,30 +112,28 @@ In the 'mysitemap.json' just add the full path to the file. For example:
         "database": "test.sdb",
         "engine": "mysqli"
     },
-    "headFile": "includes/head.i.php",
-    "bannerFile": "includes/banner.i.php",
+    "headFile": "includes/head.i.php", // relative
+    "bannerFile": "/var/www/vendor/bartonlp/simple-site-class/includes/banner.i.php", // full path
     "footerFile": "includes/footer.i.php"
 }
 ```
 
 Note, the *mysitemap.json* is not really a JSON file because you can add comments to the file.
 
-There is a default for the head, banner and footer section if you do not have special files.   
+There is a default for the head, banner and footer section if you do not have special files.
 The DOCTYPE is by default `<!DOCTYPE html>` but that can be altered via an argument to the 'getPageTopBottom' method (`$S->doctype='xxx';`).
 
 Creating the special files make the tedious boiler plate simple and yet configureable via the $S properties.
 
 ---
 
-[Examples](examplereadme.html)  
 [SimpledbTables](dbTables.html)  
 [SimpleSiteClass Methods](siteclass.html)  
-[Additional Files](files.html)  
 [Index](index.html)
 
 ## Contact Me
 
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
-Copyright &copy; 2023 Barton Phillips  
+Copyright &copy; 2025 Barton Phillips  
 Project maintained by [Barton Phillips](https://github.com/bartonlp)   
-Last Modified November 10, 2023
+Last Modified January 1, 2025

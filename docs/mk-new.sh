@@ -5,6 +5,7 @@
 echo "index";
 pagetitle="index";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/styles.css --include-in-header=addscript --standalone index.md -o index.html
+
 echo "dbTables";
 pagetitle="dbTables";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone dbTables.md -o dbTables.html
@@ -14,6 +15,6 @@ pagetitle="SimpleSiteClass Methods";
 pagetitle="Additional Files";
 echo "files";
 /usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone files.md -o files.html
-pagetitle="examplereadme";
-echo "examplereadme";
-/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone ../examples/README.md -o examplereadme.html
+#pagetitle="examplereadme";
+#echo "examplereadme";
+#/usr/bin/pandoc -f gfm -t html5 -Vpagetitle="$pagetitle" --css=stylesheets/pandoc.css --standalone ../examples/README.md -o examplereadme.html

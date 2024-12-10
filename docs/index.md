@@ -23,7 +23,7 @@ SimpleSiteClass class mini framework for small websites.
   </nav>
 <section>
 
-# SimpleSiteClass Version 1.0.0
+# SimpleSiteClass Version 1+
   
 SimpleSiteClass class mini framework for simple, small websites.
 
@@ -36,7 +36,7 @@ This project has several parts that can function standalone or combined.
 
 - Database.class.php : provides a wrapper for several different database
   engines.
-- dbMySqli.class.php : has the actual mysqli functions.
+- dbPdo.class.php : has the actual PDO functions.
 - dbTables.class.php : uses the functionality of Database.class.php to
   make creating tables easy.
 - SimpleSiteClass.class.php : tools for making creating a site a little
@@ -45,13 +45,13 @@ This project has several parts that can function standalone or combined.
 
 The following database engine is provided as the following class:
 
-1.  dbMysqli.class.php : (rigorously tested) This is the latest PHP
-    version of the MySql database engine.
+1.  dbPdo.class.php : (rigorously tested) This is the latest PHP
+    version of the PDO database engine and will run MySql and Sqlite3 databases.
 
 ## Disclamer
 
 To start, this framework is meant for Linux not Windows. I don't use
-Windows, like it or have it, so nothing has been tried on Windows. Quite
+Windows, like it or have it, so nothing has been tried on Windows servers. Quite
 frankly I don't know why anyone would use a Windows server.
 
 I use Ubuntu 22.04 Linux which is a Debian derivative. I have not tried
@@ -84,7 +84,7 @@ root directory. Add the following to 'composer.json', just cut and past:
       
 {
     "require": {
-        "bartonlp/simple-site-class": "dev-master"
+        "bartonlp/simple-site-class": "dev-pdo"
     }
 }
       
@@ -109,7 +109,7 @@ composer install
 
 ``` sourceCode
 composer
-        require bartonlp/simple-site-class:dev-master
+        require bartonlp/simple-site-class:dev-pdo
 ```
 
 </div>
@@ -122,22 +122,17 @@ In your PHP file add
 where '\$PATH_TO_VENDOR' is the path to the 'vendor' directory like './'
 or '../' etc.
 
-There are some example files in the 'examples' directory at
-'\$PATH_TO_VENDOR/vendor/bartonlp/simple-site-class/examples'. There is
-more documentation in the /docs directory.
-
 ## Further Documentation
 
 - [SimpledbTables Documentation](dbTables.html)
 - [SimpleSiteClass and SimpleDatabase Methods](siteclass.html)
 - [Additional Files User by SimpleSiteClass](files.html)
-- [Example Files](examplereadme.html)
 
 ## Contact me
 
 Barton Phillips : <bartonphillips@gmail.com>  
-Copyright © 2023 Barton Phillips  
-Last modified November 10, 2023
+Copyright © 2025 Barton Phillips  
+Last modified January 1, 2025
 </section>
 <footer>
 
