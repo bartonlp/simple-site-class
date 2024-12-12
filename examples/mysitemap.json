@@ -15,7 +15,7 @@
   "noTrack": false, // set this to true to keep the class from logging visitor activity in the logagent table. 
   "masterdb": "barton",
   "dbinfo": {
-    "host": "localhost", //"bartonphillips.com",
+    "host": "localhost",
     "user": "barton",
     "database": "barton",
     "engine": "mysql"
@@ -29,8 +29,18 @@
     "noHtml": false,
     "noOutput": false
   },
-  "aboutwebsite": "",
-  "headFile": "includes/head.i.php",
+  // These next two lines are needed if you don't want to use the
+  // default domain of https://bartonphillips.net. These can be an
+  // absolute URL. The trackerImg... entries can also be an absolute
+  // URL starting with 'http' or 'https'.
+  // If logoImgLocation and headerImg2Location are "" blank then the
+  // website domin is used.
+  "logoImgLocation": "", // Override the default of https://bartonphillips.net and causes the domain to be used.
+  "headerImg2Location": "",  // This will be your website's domain, like 'https://example.com'
+  "trackerImg1": "images/blp-image.png", // These should be the path after the domain.
+  "trackerImgPhone": "images/KIM-1-phone.jpg", // This could be a smaller image.
+  "aboutwebsite": "", // Don't add an aboutwebsite.php to the footer.
+  "headFile": "includes/head.i.php", // The full or relative path. I use 'require' to load these.
   "bannerFile": "includes/banner.i.php",
   "footerFile": "includes/footer.i.php",
   "EMAILADDRESS": "bartonphillips@gmail.com",
