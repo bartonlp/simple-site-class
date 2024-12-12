@@ -1,7 +1,7 @@
 <?php
 /* Well tested and maintained */
 
-define("DATABASE_CLASS_VERSION", "1.0.5simple-database-pdo"); 
+define("DATABASE_CLASS_VERSION", "1.0.6simple-database-pdo"); // BLP 2024-12-11 - remove finger from sqlite create.
 
 /**
  * Database wrapper class
@@ -161,7 +161,6 @@ class SimpleDatabase extends SimpledbPdo {
         $this->sql("create table if not exists logagent (`site` varchar(25) NOT NULL DEFAULT '',".
                    "`ip` varchar(40) NOT NULL DEFAULT '',".
                    "`agent` varchar(254) NOT NULL,".
-                   "`finger` varchar(50) DEFAULT NULL,".
                    "`count` int DEFAULT NULL,".
                    "`created` datetime DEFAULT NULL,".
                    "`lasttime` datetime DEFAULT NULL,".
