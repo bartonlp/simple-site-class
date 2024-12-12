@@ -284,7 +284,7 @@ jQuery(document).ready(function($) {
   console.log("VARIABLES -- phoneImg: " + phoneImg + ", desktopImg: " + desktopImg +
               ", phoneImg2: " + phoneImg2 + ", desktopImg2: " + desktopImg2);
 });
-</script>              
+  </script>              
 EOF;              
     }
     
