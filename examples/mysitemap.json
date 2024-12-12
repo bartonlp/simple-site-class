@@ -37,8 +37,8 @@
   // website domin is used.
   "logoImgLocation": "", // Override the default of https://bartonphillips.net and causes the domain to be used.
   "headerImg2Location": "",  // This will be your website's domain, like 'https://example.com'
-  "trackerImg1": "images/blp-image.png", // These should be the path after the domain.
-  "trackerImgPhone": "images/KIM-1-phone.jpg", // This could be a smaller image.
+  "trackerImg1": "examples/images/blp-image.png", // These should be the path after the domain.
+  "trackerImgPhone": "examples/images/KIM-1-phone.jpg", // This could be a smaller image.
   "aboutwebsite": "", // Don't add an aboutwebsite.php to the footer.
   "headFile": "includes/head.i.php", // The full or relative path. I use 'require' to load these.
   "bannerFile": "includes/banner.i.php",
