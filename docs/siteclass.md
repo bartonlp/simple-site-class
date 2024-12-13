@@ -49,8 +49,8 @@ Also, the dbPdo is well documented in the SimpledbMysqli.Class.php file.
 
 ---
 
+[Example Readme](examplereadme.html)  
 [SimpledbTables](dbTables.html)  
-[SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
 [Index](index.html)
 

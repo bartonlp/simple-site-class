@@ -127,6 +127,7 @@ Creating the special files make the tedious boiler plate simple and yet configur
 
 ---
 
+[Example Readme](examplereadme.html)  
 [SimpledbTables](dbTables.html)  
 [SimpleSiteClass Methods](siteclass.html)  
 [Index](index.html)

@@ -124,6 +124,7 @@ or '../' etc.
 
 ## Further Documentation
 
+- [Example Readme](examplereadme.html)
 - [SimpledbTables Documentation](dbTables.html)
 - [SimpleSiteClass and SimpleDatabase Methods](siteclass.html)
 - [Additional Files User by SimpleSiteClass](files.html)

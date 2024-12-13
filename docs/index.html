@@ -8,12 +8,24 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
-  <link rel="stylesheet" href="stylesheets/styles.css" />
+  <link rel="stylesheet" href="./stylesheets/styles.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
 </head>
 <body>
 <header>
@@ -42,28 +54,53 @@
 
 <h1 id="simplesiteclass-version-1">SimpleSiteClass Version 1+</h1>
 <p>SimpleSiteClass class mini framework for simple, small websites.</p>
-<p><strong>SimpleSiteClass</strong> is a PHP mini framework for simple, small websites. It can be esaly combined with other frameworks or templeting engines if needed. For small websites I feel that frameworks like Laravel or Meteor etc. are just too much.</p>
-<p>This project has several parts that can function standalone or combined.</p>
+<p><strong>SimpleSiteClass</strong> is a PHP mini framework for simple,
+small websites. It can be esaly combined with other frameworks or
+templeting engines if needed. For small websites I feel that frameworks
+like Laravel or Meteor etc. are just too much.</p>
+<p>This project has several parts that can function standalone or
+combined.</p>
 <ul>
-<li>Database.class.php : provides a wrapper for several different database engines.</li>
+<li>Database.class.php : provides a wrapper for several different
+database engines.</li>
 <li>dbPdo.class.php : has the actual PDO functions.</li>
-<li>dbTables.class.php : uses the functionality of Database.class.php to make creating tables easy.</li>
-<li>SimpleSiteClass.class.php : tools for making creating a site a little easier. The class provides methods to help with headers, banners, footers and more.</li>
+<li>dbTables.class.php : uses the functionality of Database.class.php to
+make creating tables easy.</li>
+<li>SimpleSiteClass.class.php : tools for making creating a site a
+little easier. The class provides methods to help with headers, banners,
+footers and more.</li>
 </ul>
 <p>The following database engine is provided as the following class:</p>
-<ol>
-<li>dbPdo.class.php : (rigorously tested) This is the latest PHP version of the PDO database engine and will run MySql and Sqlite3 databases.</li>
+<ol type="1">
+<li>dbPdo.class.php : (rigorously tested) This is the latest PHP version
+of the PDO database engine and will run MySql and Sqlite3
+databases.</li>
 </ol>
 <h2 id="disclamer">Disclamer</h2>
-<p>To start, this framework is meant for Linux not Windows. I don't use Windows, like it or have it, so nothing has been tried on Windows servers. Quite frankly I don't know why anyone would use a Windows server.</p>
-<p>I use Ubuntu 22.04 Linux which is a Debian derivative. I have not tried this package on any distributions that do not evolve from Debian.</p>
+<p>To start, this framework is meant for Linux not Windows. I don't use
+Windows, like it or have it, so nothing has been tried on Windows
+servers. Quite frankly I don't know why anyone would use a Windows
+server.</p>
+<p>I use Ubuntu 22.04 Linux which is a Debian derivative. I have not
+tried this package on any distributions that do not evolve from
+Debian.</p>
 <h2 id="install">Install</h2>
 <p>There are several ways to install this project.</p>
 <h3 id="download-the-zip-file">Download The ZIP File</h3>
-<p>Download the ZIP file from GitHub. Expand it into the /var/www dirctory that Apache2 creates. In my servers I have /var/www and then have my virtual hosts off that directory. That way the directory created when you unzip the download is easily available to all of my virtual hosts.</p>
+<p>Download the ZIP file from GitHub. Expand it into the /var/www
+dirctory that Apache2 creates. In my servers I have /var/www and then
+have my virtual hosts off that directory. That way the directory created
+when you unzip the download is easily available to all of my virtual
+hosts.</p>
 <h3 id="use-composer">Use Composer</h3>
-<p>If you have Apache or Nginx installed then you should made your project root somewhere within your DocumentRoot ('/var/www/html' for Apache2 on Ubuntu). Or if you want to make a seperate Apache virtual host with a registered domain name you can make your new project in '/var/www'.</p>
-<p>Create a directory <code>mkdir myproject; cd myproject</code>, this is your project root directory. Add the following to 'composer.json', just cut and past:</p>
+<p>If you have Apache or Nginx installed then you should made your
+project root somewhere within your DocumentRoot ('/var/www/html' for
+Apache2 on Ubuntu). Or if you want to make a seperate Apache virtual
+host with a registered domain name you can make your new project in
+'/var/www'.</p>
+<p>Create a directory <code>mkdir myproject; cd myproject</code>, this
+is your project root directory. Add the following to 'composer.json',
+just cut and past:</p>
 <div class="sourceCode">
 
 <pre class="sourceCode"><code>      
@@ -73,42 +110,49 @@
     }
 }
       
-      
-</code></pre>
+      </code></pre>
 </div>
 
 <p>Then run</p>
 <div class="sourceCode">
 
-<pre class="sourceCode"><code>composer install
-</code></pre>
+<pre class="sourceCode"><code>composer install</code></pre>
 </div>
 
 <p><strong>OR</strong> you can just run</p>
 <div class="sourceCode">
 
 <pre class="sourceCode"><code>composer
-        require bartonlp/simple-site-class:dev-pdo
-</code></pre>
+        require bartonlp/simple-site-class:dev-pdo</code></pre>
 </div>
 
-<p>which will create the 'composer.json' for you and load the package like 'composer install' above.</p>
-<p>In your PHP file add <code>$_site = require_once($PATH_TO_VENDOR . '/vendor/bartonlp/simple-site-class/includes/siteload.php');</code> where '$PATH_TO_VENDOR' is the path to the 'vendor' directory like './' or '../' etc.</p>
+<p>which will create the 'composer.json' for you and load the package
+like 'composer install' above.</p>
+<p>In your PHP file add
+<code>$_site = require_once($PATH_TO_VENDOR . '/vendor/bartonlp/simple-site-class/includes/siteload.php');</code>
+where '$PATH_TO_VENDOR' is the path to the 'vendor' directory like './'
+or '../' etc.</p>
 <h2 id="further-documentation">Further Documentation</h2>
 <ul>
+<li><a href="examplereadme.html">Example Readme</a></li>
 <li><a href="dbTables.html">SimpledbTables Documentation</a></li>
-<li><a href="siteclass.html">SimpleSiteClass and SimpleDatabase Methods</a></li>
-<li><a href="files.html">Additional Files User by SimpleSiteClass</a></li>
+<li><a href="siteclass.html">SimpleSiteClass and SimpleDatabase
+Methods</a></li>
+<li><a href="files.html">Additional Files User by
+SimpleSiteClass</a></li>
 </ul>
 <h2 id="contact-me">Contact me</h2>
-<p>Barton Phillips : <a href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a><br />
+<p>Barton Phillips : <a
+href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a><br />
 Copyright © 2025 Barton Phillips<br />
 Last modified January 1, 2025</p>
 </section>
 <footer>
 
-<p>Project maintained by <a href="https://github.com/bartonlp">Barton Phillips</a></p>
-<p><span class="small">Hosted on GitHub Pages — Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span></p>
+<p>Project maintained by <a href="https://github.com/bartonlp">Barton
+Phillips</a></p>
+<p><span class="small">Hosted on GitHub Pages — Theme by <a
+href="https://twitter.com/michigangraham">mattgraham</a></span></p>
 </footer>
 </div>
 </body>

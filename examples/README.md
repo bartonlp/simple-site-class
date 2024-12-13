@@ -49,13 +49,8 @@ Any questions can be directed to Barton Phillips at [bartonphillips@gmail.com](m
 
 Have fun
 
----
+<h2 style='margin-top: 0px;margin-bottom: 0px;'>Contact Me</h2>
 
-[SimpledbTables](dbTables.html)  
-[SimpleSiteClass Methods](siteclass.html)  
-[Additional Files](files.html)  
-[Index](index.html)
-## Contact Me
 Barton Phillips : [bartonphillips@gmail.com](mailto://bartonphillips@gmail.com)  
 Copyright &copy; 2025 Barton Phillips  
 Project maintained by [Barton Phillips](https://github.com/bartonlp)  

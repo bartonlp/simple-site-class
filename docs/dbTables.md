@@ -138,8 +138,7 @@ $extra['footer'] a footer string
 
 ---
 
-[Examples](examplereadme.html)  
-[SimpledbTables](dbTables.html)  
+[Examples Readme](examplereadme.html)  
 [SimpleSiteClass Methods](siteclass.html)  
 [Additional Files](files.html)  
 [Index](index.html)
