@@ -8,89 +8,26 @@
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    ul.task-list{list-style: none;}
   </style>
   <link rel="stylesheet" href="stylesheets/pandoc.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
 <h1 id="example-read-me">Example Read Me</h1>
-<p><strong>INPORTANT NOTE:</strong> you can disable the log function by
-either setting <code>$_site-&gt;noTrack=true</code> or adding
-<code>"noTrack":true,</code> to the mysitemap.json. Doing either of
-those things will keep the <strong>SimpleSiteClass</strong> from using
-the <em>logagent</em> table to log visitors. This will also mean that
-example2.php programs will not work.</p>
-<p>There are two example programs in the <em>examples</em> directory.
-<em>example1.php</em> is a simple program that shows how to get
-information from the <em>mysitemap.json</em> file, instantiate the
-SimpleSiteClass framework, and set several variables like
-<em>title</em>, <em>banner</em> and <em>css</em>; then get the page top
-and bottom and finally <em>echo</em> the page. The file is pretty well
-commented and there are several things you can change.</p>
-<p>The second example, <em>exampe2.php</em> is a little more complicated
-as it uses a database that collects some limited user information. The
-database is named <em>barton</em> and its table is <em>logagent</em>.
-The example shows how to query the database using an auxiliary class
-<em>SimpledbTables</em> to make the task of building a table
-simpler.</p>
-<p>Both examples can be run via <code>php -S localhost:3000</code>. This
-should be run from the <em>simple-site-class</em> directory, that is the
-directory above the <em>examples</em> directory. Once you have run the
-<strong>PHP</strong> program, you can use a browser and goto
-<code>localhost:3000/examples/example1.exe?home=/home/&lt;your home directory&gt;;</code>.
-Replace <em>&lt;your home directory&gt;</em> with the name of the
-directory you loaded <em>SimpleSiteClass</em> into.</p>
-<p>You can install the repository either by going to GitHub (<a
-href="https://github.com/bartonlp/simple-site-class"><span>https://github.com/bartonlp/simple-site-class</span></a>)
-and getting the path from the <strong>Code</strong> button and then
-clone the repository onto your system by doing
-<code>git clone &lt;repository&gt;;</code>. Replace
-<em>&lt;repository&gt;</em> with the info from the <strong>Code</strong>
-button.</p>
+<p><strong>INPORTANT NOTE:</strong> you can disable the log function by either setting <code>$_site-&gt;noTrack=true</code> or adding <code>"noTrack":true,</code> to the mysitemap.json. Doing either of those things will keep the <strong>SimpleSiteClass</strong> from using the <em>logagent</em> table to log visitors. This will also mean that example2.php programs will not work.</p>
+<p>There are two example programs in the <em>examples</em> directory. <em>example1.php</em> is a simple program that shows how to get information from the <em>mysitemap.json</em> file, instantiate the SimpleSiteClass framework, and set several variables like <em>title</em>, <em>banner</em> and <em>css</em>; then get the page top and bottom and finally <em>echo</em> the page. The file is pretty well commented and there are several things you can change.</p>
+<p>The second example, <em>exampe2.php</em> is a little more complicated as it uses a database that collects some limited user information. The database is named <em>barton</em> and its table is <em>logagent</em>. The example shows how to query the database using an auxiliary class <em>SimpledbTables</em> to make the task of building a table simpler.</p>
+<p>Both examples can be run via <code>php -S localhost:3000</code>. This should be run from the <em>simple-site-class</em> directory, that is the directory above the <em>examples</em> directory. Once you have run the <strong>PHP</strong> program, you can use a browser and goto <code>localhost:3000/examples/example1.exe?home=/home/&lt;your home directory&gt;;</code>. Replace <em>&lt;your home directory&gt;</em> with the name of the directory you loaded <em>SimpleSiteClass</em> into.</p>
+<p>You can install the repository either by going to GitHub (<a href="https://github.com/bartonlp/simple-site-class">https://github.com/bartonlp/simple-site-class</a>) and getting the path from the <strong>Code</strong> button and then clone the repository onto your system by doing <code>git clone &lt;repository&gt;;</code>. Replace <em>&lt;repository&gt;</em> with the info from the <strong>Code</strong> button.</p>
 <p>You can also download a <em>zip</em> file from the repository.</p>
-<p>If you have an Apache server running on your system, you can use
-<em>composer</em> to fetch the repository into a directory called
-<em>vendor</em>. The repository will be at
-<em>vendor/bartonlp/simple-site-class</em>. Copy the <em>examples</em>
-directory to your running domain directory. I like to put the
-<em>vendor</em> directory at <em>/var/www</em>. Apache creates this
-directory and usually puts an <em>html</em> directory under it for your
-web code. Put the <em>examples</em> directory in <em>html</em> (or
-whatever you have called your website).</p>
-<p>The two example programs are set up to use <strong>PHP PDO</strong>
-with a <em>sqlite</em> database. The database will be called
-<em>barton</em> in the <em>examples</em> directory. You should have
-<strong>PHP 8+</strong>, along with the <em>pdo-sqlite</em> and
-<em>pdo</em> extensions. If you would like to use <strong>MySql</strong>
-instead, comment out the lines in the example programs that read
-<code>$_site-&gt;dbinfo-&gt;engine = "sqlite"</code>.</p>
-<p>Both example programs require the file <em>mysitemap.json</em> which
-has information about the framework. The file is pretty well commented
-as it is not a real <strong>JSON</strong> file. I remove the comments in
-the loading process and then do a <em>json_decode()</em>, so the
-<strong>JSON</strong> code after the comment removal must be valid
-<strong>JSON</strong> code or the loader will output an error
-message.</p>
-<p>There is a file called <em>schema.sql</em> in the <em>examples</em>
-directory that can be used to create the <em>barton</em> database and
-the <em>logagent</em> table.</p>
-<p>If you have comments or need help, email me at <strong><a
-href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></strong>.</p>
+<p>If you have an Apache server running on your system, you can use <em>composer</em> to fetch the repository into a directory called <em>vendor</em>. The repository will be at <em>vendor/bartonlp/simple-site-class</em>. Copy the <em>examples</em> directory to your running domain directory. I like to put the <em>vendor</em> directory at <em>/var/www</em>. Apache creates this directory and usually puts an <em>html</em> directory under it for your web code. Put the <em>examples</em> directory in <em>html</em> (or whatever you have called your website).</p>
+<p>The two example programs are set up to use <strong>PHP PDO</strong> with a <em>sqlite</em> database. The database will be called <em>barton</em> in the <em>examples</em> directory. You should have <strong>PHP 8+</strong>, along with the <em>pdo-sqlite</em> and <em>pdo</em> extensions. If you would like to use <strong>MySql</strong> instead, comment out the lines in the example programs that read <code>$_site-&gt;dbinfo-&gt;engine = "sqlite"</code>.</p>
+<p>Both example programs require the file <em>mysitemap.json</em> which has information about the framework. The file is pretty well commented as it is not a real <strong>JSON</strong> file. I remove the comments in the loading process and then do a <em>json_decode()</em>, so the <strong>JSON</strong> code after the comment removal must be valid <strong>JSON</strong> code or the loader will output an error message.</p>
+<p>There is a file called <em>schema.sql</em> in the <em>examples</em> directory that can be used to create the <em>barton</em> database and the <em>logagent</em> table.</p>
+<p>If you have comments or need help, email me at <strong><a href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></strong>.</p>
 <p>Have fun.</p>
 <hr />
 <p><a href="dbTables.html">SimpledbTables</a><br />
@@ -98,11 +35,9 @@ href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></strong>.</p
 <a href="files.html">Additional Files</a><br />
 <a href="index.html">Index</a></p>
 <h2 id="contact-me">Contact Me</h2>
-<p>Barton Phillips : <a href="mailto://bartonphillips@gmail.com"><a
-href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></a><br />
+<p>Barton Phillips : <a href="mailto://bartonphillips@gmail.com"><a href="mailto:bartonphillips@gmail.com">bartonphillips@gmail.com</a></a><br />
 Copyright © 2025 Barton Phillips<br />
-Project maintained by <a href="https://github.com/bartonlp">Barton
-Phillips</a><br />
+Project maintained by <a href="https://github.com/bartonlp">Barton Phillips</a><br />
 Last modified January 1, 2025</p>
 </body>
 </html>

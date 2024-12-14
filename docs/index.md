@@ -84,7 +84,7 @@ root directory. Add the following to 'composer.json', just cut and past:
       
 {
     "require": {
-        "bartonlp/simple-site-class": "dev-pdo"
+        "bartonlp/simple-site-class": "dev-main"
     }
 }
       
@@ -109,7 +109,7 @@ composer install
 
 ``` sourceCode
 composer
-        require bartonlp/simple-site-class:dev-pdo
+        require bartonlp/simple-site-class:dev-main
 ```
 
 </div>
