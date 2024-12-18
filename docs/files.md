@@ -103,7 +103,7 @@ In the 'mysitemap.json' just add the relative or full path to the file. For exam
     "siteDomain": "localhost",
     "siteName": "YourSiteName",
     "className": "SimpleSiteClass",
-    "copyright": "2016 Barton L. Phillips",
+    "copyright": "Barton L. Phillips", // The copyright date is filled in by SimpleSiteClass.
     "memberTable": "members",
     "noTrack": true,
     "dbinfo": {
